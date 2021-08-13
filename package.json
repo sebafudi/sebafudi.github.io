@@ -1,0 +1,32 @@
+{
+  "name": "sebafudi.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebafudi/sebafudi.github.io.git"
+  },
+  "keywords": [],
+  "author": "Sebastian Fudalej",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/sebafudi/sebafudi.github.io/issues"
+  },
+  "homepage": "https://github.com/sebafudi/sebafudi.github.io#readme",
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^8.1.0",
+    "parcel": "^1.12.3",
+    "prettier": "^2.3.2"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
