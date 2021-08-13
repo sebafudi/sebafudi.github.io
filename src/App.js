@@ -1,12 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-const Project = (props) => {
-  return React.createElement("div", {}, [
-    React.createElement("h2", {}, props.name),
-    React.createElement("h3", {}, props.technology),
-  ]);
-};
+import Project from "./Project";
 
 const App = () => {
   return React.createElement("div", {}, [
