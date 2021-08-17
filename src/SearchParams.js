@@ -1,10 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Project from "./Project";
 
 const TECHNOLOGIES = ["react", "node.js", "c++"];
 
 const SearchParams = () => {
   const [name, setName] = useState("website");
-  const [technology, setTechnology] = useState("");
+  const [technology, setTechnology] = useState("All");
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    requestProjects();
+  }, []);
+
+  async function requestProjects() {
+    let response = await fetch("https://api.github.com/users/sebafudi/repos", {
+      headers: {
+        Accept: "application/vnd.github.v3+json",
+      },
+    });
+    let json = await response.json();
+    if (response.status === 200) {
+      setProjects(json);
+    } else {
+      setProjects([{ name: response.status, language: json.message }]);
+    }
+  }
 
   return (
     <div className="search-params">
@@ -37,6 +57,15 @@ const SearchParams = () => {
         </label>
         <button>Submit</button>
       </form>
+      <div className="projects">
+        {projects.map((project) => (
+          <Project
+            name={project.name}
+            technology={project.language}
+            key={project.id}
+          />
+        ))}
+      </div>
     </div>
   );
 };

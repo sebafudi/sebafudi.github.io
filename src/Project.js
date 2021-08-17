@@ -1,6 +1,6 @@
 const Project = (props) => {
   return (
-    <div>
+    <div className="project">
       <h2>{props.name}</h2>
       <h3>{props.technology}</h3>
     </div>
