@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import Project from "./Project";
 
-const TECHNOLOGIES = ["react", "node.js", "c++"];
+let TECHNOLOGIES = [];
 
 const SearchParams = () => {
-  const [name, setName] = useState("website");
+  const [name, setName] = useState("");
   const [technology, setTechnology] = useState("All");
   const [projects, setProjects] = useState([]);
 
@@ -20,6 +20,12 @@ const SearchParams = () => {
     });
     let json = await response.json();
     if (response.status === 200) {
+      for (let project of json) {
+        TECHNOLOGIES.push(project.language);
+      }
+      TECHNOLOGIES = TECHNOLOGIES.filter(
+        (v, i, a) => a.indexOf(v) === i && v !== null
+      );
       setProjects(json);
     } else {
       setProjects([{ name: response.status, language: json.message }]);
@@ -47,7 +53,9 @@ const SearchParams = () => {
             onChange={(e) => setTechnology(e.target.value)}
             onBlur={(e) => setTechnology(e.target.value)}
           >
-            <option />
+            <option value={technology} key={technology}>
+              {technology}
+            </option>
             {TECHNOLOGIES.map((technology) => (
               <option value={technology} key={technology}>
                 {technology}
