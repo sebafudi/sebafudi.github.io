@@ -34,45 +34,60 @@ const SearchParams = () => {
 
   return (
     <div className="search-params">
-      <form>
-        <label htmlFor="name">
-          Name
-          <input
-            type="text"
-            id="name"
-            value={name}
-            placeholder="name"
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label htmlFor="technology">
-          Technology
-          <select
-            id="technology"
-            value={technology}
-            onChange={(e) => setTechnology(e.target.value)}
-            onBlur={(e) => setTechnology(e.target.value)}
-          >
-            <option value={technology} key={technology}>
-              {technology}
-            </option>
-            {TECHNOLOGIES.map((technology) => (
-              <option value={technology} key={technology}>
-                {technology}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button>Submit</button>
-      </form>
-      <div className="projects">
-        {projects.map((project) => (
-          <Project
-            name={project.name}
-            technology={project.language}
-            key={project.id}
-          />
-        ))}
+      <div className="section">
+        <form>
+          <div className="field">
+            <label className="label" htmlFor="name">
+              Name
+            </label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                id="name"
+                value={name}
+                placeholder="name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label" htmlFor="technology">
+              Technology
+            </label>
+            <div className="control">
+              <select
+                className="select"
+                id="technology"
+                value={technology}
+                onChange={(e) => setTechnology(e.target.value)}
+                onBlur={(e) => setTechnology(e.target.value)}
+              >
+                <option value={technology} key={technology}>
+                  {technology}
+                </option>
+                {TECHNOLOGIES.map((technology) => (
+                  <option value={technology} key={technology}>
+                    {technology}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <button className="button">Submit</button>
+        </form>
+      </div>
+      <div className="section has-background-primary">
+        <div className="projects is-flex is-flex-wrap-wrap">
+          {projects.map((project) => (
+            <Project
+              name={project.name}
+              technology={project.language}
+              key={project.id}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
