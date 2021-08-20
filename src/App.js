@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-// import Project from "./Project";
+import './style.scss'
 import SearchParams from "./SearchParams";
 
 const App = () => {
