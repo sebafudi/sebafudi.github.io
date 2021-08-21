@@ -20,6 +20,7 @@ const SearchParams = () => {
     });
     let json = await response.json();
     if (response.status === 200) {
+      TECHNOLOGIES.push("All");
       for (let project of json) {
         TECHNOLOGIES.push(project.language);
       }
@@ -64,9 +65,6 @@ const SearchParams = () => {
                 onChange={(e) => setTechnology(e.target.value)}
                 onBlur={(e) => setTechnology(e.target.value)}
               >
-                <option value={technology} key={technology}>
-                  {technology}
-                </option>
                 {TECHNOLOGIES.map((technology) => (
                   <option value={technology} key={technology}>
                     {technology}
