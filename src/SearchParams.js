@@ -21,7 +21,9 @@ const SearchParams = () => {
     let json = await response.json();
     if (response.status === 200) {
       for (let project of json) {
-        TECHNOLOGIES.push(project.language);
+        if (project.language) {
+          TECHNOLOGIES.push(project.language);
+        }
       }
       TECHNOLOGIES = TECHNOLOGIES.filter(
         (v, i, a) => a.indexOf(v) === i && v !== null
@@ -83,7 +85,7 @@ const SearchParams = () => {
           {projects.map((project) => (
             <Project
               name={project.name}
-              technology={project.language}
+              technology={project.language || "???"}
               key={project.id}
             />
           ))}
