@@ -7,10 +7,19 @@ const SearchParams = () => {
   const [name, setName] = useState("");
   const [technology, setTechnology] = useState("All");
   const [projects, setProjects] = useState([]);
+  const [projectList, setProjectList] = useState([]);
 
   useEffect(() => {
     requestProjects();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    filterProjects();
+  }, [projectList]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    filterProjects();
+  }, [technology]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function requestProjects() {
     let response = await fetch("https://api.github.com/users/sebafudi/repos", {
@@ -29,16 +38,25 @@ const SearchParams = () => {
       TECHNOLOGIES = TECHNOLOGIES.filter(
         (v, i, a) => a.indexOf(v) === i && v !== null
       );
-      setProjects(json);
+      console.log("setProjectList");
+      setProjectList(json);
     } else {
-      setProjects([{ name: response.status, language: json.message }]);
+      alert(`${response.status}`);
+    }
+  }
+
+  function filterProjects() {
+    if (technology === "All") {
+      setProjects(projectList);
+    } else {
+      setProjects(projectList.filter((v) => v.language == technology));
     }
   }
 
   return (
     <div className="search-params">
       <div className="section">
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="field">
             <label className="label" htmlFor="name">
               Name
@@ -75,7 +93,6 @@ const SearchParams = () => {
               </select>
             </div>
           </div>
-          <button className="button">Submit</button>
         </form>
       </div>
       <div className="section has-background-primary">
