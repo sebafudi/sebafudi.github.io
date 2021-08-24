@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Project from "./Project";
+import Results from "./Results";
 
 let TECHNOLOGIES = [];
 
@@ -38,10 +38,9 @@ const SearchParams = () => {
       TECHNOLOGIES = TECHNOLOGIES.filter(
         (v, i, a) => a.indexOf(v) === i && v !== null
       );
-      console.log("setProjectList");
+      json.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+      console.log(json);
       setProjectList(json);
-    } else {
-      alert(`${response.status}`);
     }
   }
 
@@ -96,15 +95,7 @@ const SearchParams = () => {
         </form>
       </div>
       <div className="section has-background-primary">
-        <div className="projects is-flex is-flex-wrap-wrap">
-          {projects.map((project) => (
-            <Project
-              name={project.name}
-              technology={project.language || "???"}
-              key={project.id}
-            />
-          ))}
-        </div>
+        <Results projects={projects} />
       </div>
     </div>
   );
