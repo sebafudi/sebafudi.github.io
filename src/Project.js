@@ -4,46 +4,49 @@ import "@fortawesome/fontawesome-free";
 
 dayjs.extend(relativeTime);
 
-const Project = (props) => {
+const Project = ({
+  name,
+  archived,
+  pushed_at,
+  technology,
+  html_url,
+  homepage,
+}) => {
   return (
     <div className="box m-2 is-flex-grow-1">
       <article className="media">
         <div className="media-content">
           <div className="content">
-            <p>
-              <strong>{props.name}</strong>{" "}
-              <small>
-                {props.archived ? (
-                  <>
-                    <span className="fas fa-archive" />{" "}
-                  </>
-                ) : (
-                  ""
-                )}
-                <time dateTime={props.pushed_at}>
-                  {dayjs(props.pushed_at).fromNow()}
-                </time>
-              </small>
-              <br />
-              <p>{props.technology}</p>
-            </p>
+            <strong>{name}</strong>{" "}
+            <small>
+              {archived ? (
+                <>
+                  <span className="fas fa-archive" />{" "}
+                </>
+              ) : (
+                ""
+              )}
+              <time dateTime={pushed_at}>{dayjs(pushed_at).fromNow()}</time>
+            </small>
+            <br />
+            <p>{technology}</p>
           </div>
           <nav className="level is-mobile">
             <div className="level-left">
               <a
                 className="level-item"
                 aria-label="github repository"
-                href={props.html_url}
+                href={html_url}
                 rel="noreferrer"
                 target="_blank"
               >
                 <span className="fab fa-github"></span>
               </a>
-              {props.homepage ? (
+              {homepage ? (
                 <a
                   className="level-item"
                   aria-label="live version"
-                  href={props.homepage}
+                  href={homepage}
                   rel="noreferrer"
                   target="_blank"
                 >
