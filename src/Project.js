@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "@fortawesome/fontawesome-free";
+import { Link } from "react-router-dom";
 
 dayjs.extend(relativeTime);
 
@@ -33,6 +34,13 @@ const Project = ({
           </div>
           <nav className="level is-mobile">
             <div className="level-left">
+              <Link
+                className="level-item"
+                aria-label="info"
+                to={`/details/${name}`}
+              >
+                <span className="fas fa-info"></span>
+              </Link>
               <a
                 className="level-item"
                 aria-label="github repository"
