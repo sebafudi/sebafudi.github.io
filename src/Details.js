@@ -2,6 +2,7 @@ import { Component } from "react";
 import { withRouter } from "react-router-dom";
 import base64 from "base-64";
 import marked from "marked";
+import utf8 from "utf8";
 
 class Details extends Component {
   constructor() {
@@ -19,7 +20,11 @@ class Details extends Component {
       }
     );
     const json = await res.json();
-    this.setState(Object.assign({ loading: false, status: res.status }, json));
+    this.setState({
+      loading: false,
+      status: res.status,
+      content: json.content,
+    });
   }
   render() {
     const { status, content, loading } = this.state;
@@ -32,6 +37,7 @@ class Details extends Component {
         );
       }
       let readme = base64.decode(content);
+      readme = utf8.decode(readme);
       return (
         <section className="section">
           <div className="content">
