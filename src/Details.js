@@ -5,11 +5,8 @@ import marked from "marked";
 import utf8 from "utf8";
 
 class Details extends Component {
-  constructor() {
-    super();
+  state = { loading: true };
 
-    this.state = { loading: true };
-  }
   async componentDidMount() {
     const res = await fetch(
       `https://api.github.com/repos/sebafudi/${this.props.match.params.name}/readme`,
