@@ -19,7 +19,7 @@ const SearchParams = () => {
 
   useEffect(() => {
     filterProjects();
-  }, [technology]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [technology, name]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function requestProjects() {
     let response = await fetch("https://api.github.com/users/sebafudi/repos", {
@@ -45,11 +45,14 @@ const SearchParams = () => {
   }
 
   function filterProjects() {
+    let p = [];
     if (technology === "All") {
-      setProjects(projectList);
+      p = projectList;
     } else {
-      setProjects(projectList.filter((v) => v.language == technology));
+      p = projectList.filter((v) => v.language == technology);
     }
+    p = p.filter((v) => v.name.toLowerCase().includes(name.toLowerCase()));
+    setProjects(p);
   }
 
   return (
