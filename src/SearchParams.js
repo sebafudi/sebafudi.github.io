@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Results from "./Results";
+import Breadcrumb from "./Breadcrumb";
 
 let TECHNOLOGIES = [];
 
@@ -39,7 +40,6 @@ const SearchParams = () => {
         (v, i, a) => a.indexOf(v) === i && v !== null
       );
       json.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
-      console.log(json);
       setProjectList(json);
     }
   }
@@ -58,6 +58,7 @@ const SearchParams = () => {
   return (
     <div className="search-params">
       <div className="section">
+        <Breadcrumb paths={[{ name: "Main Page", path: "/" }]} />
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="field">
             <label className="label" htmlFor="name">
