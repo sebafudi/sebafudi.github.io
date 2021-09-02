@@ -59,47 +59,54 @@ const SearchParams = () => {
     <div className="search-params">
       <div className="section">
         <Breadcrumb paths={[{ name: "Main Page", path: "/" }]} />
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className="field">
-            <label className="label" htmlFor="name">
-              Name
-            </label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                id="name"
-                value={name}
-                placeholder="name"
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-          </div>
+        <div className="columns">
+          <div className="column is-one-quarter">
+            <div className="box m-2">
+              <form onSubmit={(e) => e.preventDefault()}>
+                <div className="field">
+                  <label className="label" htmlFor="name">
+                    Name
+                  </label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="text"
+                      id="name"
+                      value={name}
+                      placeholder="name"
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-          <div className="field">
-            <label className="label" htmlFor="technology">
-              Technology
-            </label>
-            <div className="control">
-              <select
-                className="select"
-                id="technology"
-                value={technology}
-                onChange={(e) => setTechnology(e.target.value)}
-                onBlur={(e) => setTechnology(e.target.value)}
-              >
-                {TECHNOLOGIES.map((technology) => (
-                  <option value={technology} key={technology}>
-                    {technology}
-                  </option>
-                ))}
-              </select>
+                <div className="field">
+                  <label className="label" htmlFor="technology">
+                    Technology
+                  </label>
+                  <div className="control">
+                    <div className="select is-fullwidth">
+                      <select
+                        id="technology"
+                        value={technology}
+                        onChange={(e) => setTechnology(e.target.value)}
+                        onBlur={(e) => setTechnology(e.target.value)}
+                      >
+                        {TECHNOLOGIES.map((technology) => (
+                          <option value={technology} key={technology}>
+                            {technology}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
-        </form>
-      </div>
-      <div className="section has-background-primary">
-        <Results projects={projects} />
+          <div className="column">
+            <Results projects={projects} />
+          </div>
+        </div>
       </div>
     </div>
   );
