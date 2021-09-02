@@ -64,6 +64,15 @@ class Details extends Component {
     }
     return (
       <section className="section">
+        <Breadcrumb
+          paths={[
+            { name: "Main Page", path: "/" },
+            {
+              name: params.name,
+              path: `/details/${params.name}`,
+            },
+          ]}
+        />
         <div className="notification is-info">Loading</div>
       </section>
     );
