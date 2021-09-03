@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import base64 from "base-64";
 import marked from "marked";
 import utf8 from "utf8";
-import Breadcrumb from "./Breadcrumb";
 
 class Details extends Component {
   state = { loading: true };
@@ -25,20 +24,10 @@ class Details extends Component {
   }
   render() {
     const { status, content, loading } = this.state;
-    const { params } = this.props.match;
     if (loading === false) {
       if (status !== 200) {
         return (
           <section className="section">
-            <Breadcrumb
-              paths={[
-                { name: "Main Page", path: "/" },
-                {
-                  name: params.name,
-                  path: `/details/${params.name}`,
-                },
-              ]}
-            />
             <div className="notification is-warning">No README.md found</div>
           </section>
         );
@@ -47,32 +36,16 @@ class Details extends Component {
       readme = utf8.decode(readme);
       return (
         <section className="section">
-          <Breadcrumb
-            paths={[
-              { name: "Main Page", path: "/" },
-              {
-                name: params.name,
-                path: `/details/${params.name}`,
-              },
-            ]}
-          />
           <div className="content">
-            <div dangerouslySetInnerHTML={{ __html: marked(readme) }} />
+            <div className="box">
+              <div dangerouslySetInnerHTML={{ __html: marked(readme) }} />
+            </div>
           </div>
         </section>
       );
     }
     return (
       <section className="section">
-        <Breadcrumb
-          paths={[
-            { name: "Main Page", path: "/" },
-            {
-              name: params.name,
-              path: `/details/${params.name}`,
-            },
-          ]}
-        />
         <div className="notification is-info">Loading</div>
       </section>
     );

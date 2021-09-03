@@ -32,5 +32,8 @@ $yellow-invert: rgba($black, 0.7);
 $primary-invert: rgba($black, 0.7);
 
 $pre-background: $nord5;
+$breadcrumb-item-separator-color: $nord0;
+// $navbar-padding-vertical: 100rem;
+$navbar-height: 5rem;
 
 @import "~bulma/bulma";

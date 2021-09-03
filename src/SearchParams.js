@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Results from "./Results";
-import Breadcrumb from "./Breadcrumb";
 
 let TECHNOLOGIES = [];
 
@@ -58,7 +57,6 @@ const SearchParams = () => {
   return (
     <div className="search-params">
       <div className="section">
-        <Breadcrumb paths={[{ name: "Main Page", path: "/" }]} />
         <div className="columns">
           <div className="column is-one-quarter">
             <div className="box m-2">

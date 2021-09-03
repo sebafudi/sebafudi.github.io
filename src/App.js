@@ -1,21 +1,30 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import "./style.scss";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
+import Navigation from "./Navigation";
 
 const App = () => {
   return (
     <div>
       <Router>
-        <header className="hero is-primary">
-          <Link to="/">
-            <div className="hero-body">
-              <p className="title">sebafudi</p>
-            </div>
-          </Link>
-        </header>
+        <nav
+          className="navbar is-primary is-fixed-top"
+          role="navigation"
+          aria-label="main navigation"
+        >
+          <span className="navbar-item">
+            <span className="title">sebafudi</span>
+          </span>
+
+          <Route path={["/details/:name", "/"]}>
+            <span className="navbar-item" href="https://bulma.io">
+              <Navigation />
+            </span>
+          </Route>
+        </nav>
         <Switch>
           <Route path="/details/:name">
             <Details />
