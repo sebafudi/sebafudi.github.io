@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import base64 from "base-64";
 import marked from "marked";
 import utf8 from "utf8";
+import ErrorBoundary from "./ErrorBoundary";
 
 class Details extends Component {
   state = { loading: true };
@@ -26,11 +27,15 @@ class Details extends Component {
     const { status, content, loading } = this.state;
     if (loading === false) {
       if (status !== 200) {
-        return (
-          <section className="section">
-            <div className="notification is-warning">No README.md found</div>
-          </section>
-        );
+        if (status === 404) {
+          return (
+            <section className="section">
+              <div className="notification is-warning">No README.md found</div>
+            </section>
+          );
+        } else {
+          throw new Error("Api error");
+        }
       }
       let readme = base64.decode(content);
       readme = utf8.decode(readme);
@@ -52,4 +57,12 @@ class Details extends Component {
   }
 }
 
-export default withRouter(Details);
+const DetailsWithRouter = withRouter(Details);
+
+export default function DetailsWithErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <DetailsWithRouter />
+    </ErrorBoundary>
+  );
+}
