@@ -8,6 +8,7 @@ import SearchParams from "./SearchParams";
 import Details from "./Details";
 import Navigation from "./Navigation";
 import SentryContext from "./SentryContext";
+import Home from "./Home";
 
 Sentry.init({
   dsn: "https://5554862ca06847e69dfdb3299752f278@o994039.ingest.sentry.io/5952352",
@@ -24,27 +25,29 @@ const App = () => {
     <SentryContext.Provider value={Sentry}>
       <div>
         <Router>
-          <nav
-            className="navbar is-primary is-fixed-top"
-            role="navigation"
-            aria-label="main navigation"
-          >
-            <span className="navbar-item">
-              <span className="title">sebafudi</span>
-            </span>
-
-            <Route path={["/details/:name", "/"]}>
+          <Route path={["/projects/details/:name", "/projects"]}>
+            <nav
+              className="navbar is-primary is-fixed-top"
+              role="navigation"
+              aria-label="main navigation"
+            >
+              <span className="navbar-item">
+                <span className="title">sebafudi</span>
+              </span>
               <span className="navbar-item" href="https://bulma.io">
                 <Navigation />
               </span>
-            </Route>
-          </nav>
+            </nav>
+          </Route>
           <Switch>
-            <Route path="/details/:name">
+            <Route path="/projects/details/:name">
               <Details />
             </Route>
-            <Route path="/">
+            <Route path="/projects">
               <SearchParams />
+            </Route>
+            <Route path="/">
+              <Home />
             </Route>
           </Switch>
         </Router>
