@@ -27,7 +27,7 @@ const App = () => {
         <Router>
           <Route path={["/projects/details/:name", "/projects"]}>
             <nav
-              className="navbar is-primary is-fixed-top"
+              className="navbar is-primary"
               role="navigation"
               aria-label="main navigation"
             >

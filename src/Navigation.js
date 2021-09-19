@@ -6,7 +6,8 @@ class Navigation extends Component {
   render() {
     const { params } = this.props.match;
     let paths = new Array();
-    paths.push({ name: "Main Page", path: "/" });
+    paths.push({ name: "Home", path: "/" });
+    paths.push({ name: "Projects", path: "/projects" });
     if (
       !(
         params &&
@@ -14,7 +15,10 @@ class Navigation extends Component {
         params.constructor === Object
       )
     )
-      paths.push({ name: params.name, path: `/details/${params.name}` });
+      paths.push({
+        name: params.name,
+        path: `/projects/details/${params.name}`,
+      });
     return <Breadcrumb paths={paths} />;
   }
 }
