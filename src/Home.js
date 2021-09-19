@@ -9,7 +9,13 @@ function Home() {
           <p className="subtitle">
             <Link to="/projects">my projects</Link>
             <br />
-            <a href="https://github.com/sebafudi">my github</a>
+            <a
+              href="https://github.com/sebafudi"
+              target="_blank"
+              rel="noreferrer"
+            >
+              my github
+            </a>
           </p>
         </div>
       </div>
