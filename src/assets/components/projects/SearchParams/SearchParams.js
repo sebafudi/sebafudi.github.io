@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Results from "./Results";
+import Results from "../Results/Results";
 
 let TECHNOLOGIES = [];
 

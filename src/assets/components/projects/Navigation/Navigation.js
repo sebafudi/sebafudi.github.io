@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { withRouter } from "react-router-dom";
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 class Navigation extends Component {
   render() {

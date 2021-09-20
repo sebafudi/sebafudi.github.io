@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import base64 from "base-64";
 import marked from "marked";
 import utf8 from "utf8";
-import ErrorBoundary from "./ErrorBoundary";
+import ErrorBoundary from "../../../ErrorBoundary";
 
 class Details extends Component {
   state = { loading: true };

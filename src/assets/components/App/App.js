@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import "./style.scss";
-import SearchParams from "./SearchParams";
-import Details from "./Details";
-import Navigation from "./Navigation";
-import SentryContext from "./SentryContext";
-import Home from "./Home";
+import "../../style.scss";
+import SearchParams from "../projects/SearchParams/SearchParams";
+import Details from "../projects/Details/Details";
+import Navigation from "../projects/Navigation/Navigation";
+import SentryContext from "../../SentryContext";
+import Home from "../Home/Home";
 
 Sentry.init({
   dsn: "https://5554862ca06847e69dfdb3299752f278@o994039.ingest.sentry.io/5952352",
@@ -34,7 +34,7 @@ const App = () => {
               <span className="navbar-item">
                 <span className="title">sebafudi</span>
               </span>
-              <span className="navbar-item" href="https://bulma.io">
+              <span className="navbar-item">
                 <Navigation />
               </span>
             </nav>
