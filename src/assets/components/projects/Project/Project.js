@@ -9,9 +9,9 @@ const Project = ({
   name,
   archived,
   pushed_at,
-  technology,
   html_url,
   homepage,
+  description,
 }) => {
   return (
     <div className="box m-2 is-flex-grow-1">
@@ -30,7 +30,15 @@ const Project = ({
               <time dateTime={pushed_at}>{dayjs(pushed_at).fromNow()}</time>
             </small>
             <br />
-            <p>{technology}</p>
+            <p>
+              {description ? (
+                description
+              ) : (
+                <i>
+                  <small>No description</small>
+                </i>
+              )}
+            </p>
           </div>
           <nav className="level is-mobile">
             <div className="level-left">

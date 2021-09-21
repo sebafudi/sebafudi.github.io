@@ -15,6 +15,7 @@ const Results = ({ projects }) => {
             pushed_at={project.pushed_at}
             homepage={project.homepage}
             archived={project.archived}
+            description={project.description}
           />
         ))
       )}
