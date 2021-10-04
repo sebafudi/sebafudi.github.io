@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
 
+import "./Home.scss";
+
 function Home() {
   return (
-    <section className="hero is-fullheight">
-      <div className="hero-body">
-        <div className="">
-          <p className="title">hello</p>
-          <p className="subtitle">
-            <Link to="/projects">my projects</Link>
-            <br />
-            <a
-              href="https://github.com/sebafudi"
-              target="_blank"
-              rel="noreferrer"
-            >
-              my github
-            </a>
-          </p>
-        </div>
+    <section className="home-container">
+      <div className="home-items">
+        <p className="home-title">hello</p>
+        <p className="home-item">
+          <Link to="/projects">my projects</Link>
+          <br />
+          <a
+            href="https://github.com/sebafudi"
+            target="_blank"
+            rel="noreferrer"
+          >
+            my github
+          </a>
+        </p>
       </div>
     </section>
   );
