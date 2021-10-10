@@ -9,14 +9,30 @@ function Home() {
         <p className="home-title">hello</p>
         <p className="home-item">
           <Link to="/projects">my projects</Link>
-          <br />
+        </p>
+        <p className="home-item">
           <a
             href="https://github.com/sebafudi"
             target="_blank"
             rel="noreferrer"
           >
-            my github
+            github
           </a>
+        </p>
+        <p className="home-item">
+          <a
+            href="https://www.linkedin.com/in/sebafudi/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            linkedin
+          </a>
+        </p>
+        <p className="home-item">
+          <Link to="/contact">contact</Link>
+        </p>
+        <p className="home-item">
+          <Link to="/aboutme">about me</Link>
         </p>
       </div>
     </section>
