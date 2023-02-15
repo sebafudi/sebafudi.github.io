@@ -28,12 +28,6 @@ function Home() {
             linkedin
           </a>
         </p>
-        <p className="home-item">
-          <Link to="/contact">contact</Link>
-        </p>
-        <p className="home-item">
-          <Link to="/aboutme">about me</Link>
-        </p>
       </div>
     </section>
   );
