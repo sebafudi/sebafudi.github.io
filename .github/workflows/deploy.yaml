@@ -46,4 +46,5 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             ~/play.sh \
-            deploy/build
+            deploy/build \
+            -e DOMAIN=sbfd.me
