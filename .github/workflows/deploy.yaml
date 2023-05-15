@@ -35,7 +35,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
-          source: dist
+          source: dist/*
           target: ~/www/sbfd.me
       - name: Deploy on host
         uses: appleboy/ssh-action@master
@@ -46,7 +46,4 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             ~/play.sh \
-            deploy/build \
-            -e DOMAIN=sbfd.me \
-            -e CERT=sbfd.me.cf \
-            -e SSL_ONLY=true
+            deploy/build
