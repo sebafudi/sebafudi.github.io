@@ -4,6 +4,7 @@ import marked from "marked";
 import utf8 from "utf8";
 import ErrorBoundary from "../../../ErrorBoundary";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import * as Sentry from "@sentry/react";
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -19,21 +20,26 @@ function withRouter(Component) {
 class Details extends Component {
   state = { loading: true };
   async componentDidMount() {
-    const res = await fetch(
-      `https://api.github.com/repos/sebafudi/${this.props.match.params.name}/readme`,
-      {
-        headers: {
-          Accept: "application/vnd.github.v3+json",
+    try {
+      const res = await fetch(
+        `https://api.github.com/repos/sebafudi/${this.props.router.params.name}/readme`,
+        {
+          headers: {
+            Accept: "application/vnd.github.v3+json",
+          },
         },
-      },
-    );
-    const json = await res.json();
-    this.setState({
-      loading: false,
-      status: res.status,
-      content: json.content,
-    });
+      );
+      const json = await res.json();
+      this.setState({
+        loading: false,
+        status: res.status,
+        content: json.content,
+      });
+    } catch (error) {
+      Sentry.captureException(error);
+    }
   }
+
   render() {
     const { status, content, loading } = this.state;
     if (loading === false) {
@@ -54,7 +60,7 @@ class Details extends Component {
         <section className="section">
           <div className="content">
             <div className="box">
-              <div dangerouslySetInnerHTML={{ __html: marked(readme) }} />
+              <div dangerouslySetInnerHTML={{ __html: marked.parse(readme) }} />
             </div>
           </div>
         </section>
