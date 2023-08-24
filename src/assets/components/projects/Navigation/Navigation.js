@@ -1,10 +1,21 @@
 import { Component } from "react";
-import { withRouter } from "react-router-dom";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return <Component {...props} router={{ location, navigate, params }} />;
+  }
+
+  return ComponentWithRouterProp;
+}
 
 class Navigation extends Component {
   render() {
-    const { params } = this.props.match;
+    const { params } = this.props.router;
     let paths = new Array();
     paths.push({ name: "Home", path: "/" });
     paths.push({ name: "Projects", path: "/projects" });

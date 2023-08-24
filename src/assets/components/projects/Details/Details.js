@@ -1,9 +1,20 @@
 import { Component } from "react";
-import { withRouter } from "react-router-dom";
 import base64 from "base-64";
 import marked from "marked";
 import utf8 from "utf8";
 import ErrorBoundary from "../../../ErrorBoundary";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return <Component {...props} router={{ location, navigate, params }} />;
+  }
+
+  return ComponentWithRouterProp;
+}
 
 class Details extends Component {
   state = { loading: true };
@@ -14,7 +25,7 @@ class Details extends Component {
         headers: {
           Accept: "application/vnd.github.v3+json",
         },
-      }
+      },
     );
     const json = await res.json();
     this.setState({

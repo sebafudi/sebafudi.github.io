@@ -1,6 +1,6 @@
-@import "~nord/src/sass/nord";
-@import "~bulma/sass/utilities/initial-variables";
-@import "~bulma/sass/utilities/functions";
+@import "nord/src/sass/nord";
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
 
 // colors
 $orange: $nord12;
@@ -36,4 +36,4 @@ $breadcrumb-item-separator-color: $nord0;
 // $navbar-padding-vertical: 100rem;
 $navbar-height: 5rem;
 
-@import "~bulma/bulma";
+@import "bulma/bulma";

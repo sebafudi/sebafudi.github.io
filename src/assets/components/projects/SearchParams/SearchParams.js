@@ -36,7 +36,7 @@ const SearchParams = () => {
         }
       }
       TECHNOLOGIES = TECHNOLOGIES.filter(
-        (v, i, a) => a.indexOf(v) === i && v !== null
+        (v, i, a) => a.indexOf(v) === i && v !== null,
       );
       json.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
       setProjectList(json);

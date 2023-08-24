@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 class ErrorBoundary extends Component {
   state = { hasError: false, redirect: false, secToRedirect: -1 };
@@ -21,7 +21,7 @@ class ErrorBoundary extends Component {
   }
   render() {
     if (this.state.redirect) {
-      return <Redirect to="/" />;
+      return <redirect to="/" />;
     }
     if (this.state.hasError) {
       return (

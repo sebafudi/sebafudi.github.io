@@ -1,14 +1,15 @@
 import { StrictMode } from "react";
-import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import "../../style.scss";
 import SearchParams from "../projects/SearchParams/SearchParams";
 import Details from "../projects/Details/Details";
 import Navigation from "../projects/Navigation/Navigation";
 import SentryContext from "../../SentryContext";
 import Home from "../Home/Home";
+import { createRoot } from "react-dom/client";
+import React from "react";
 
 Sentry.init({
   dsn: "https://5554862ca06847e69dfdb3299752f278@o994039.ingest.sentry.io/5952352",
@@ -20,45 +21,59 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
+const NavBar = () => {
+  return (
+    <nav
+      className="navbar is-primary"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <span className="navbar-item">
+        <span className="title">sebafudi</span>
+      </span>
+      <span className="navbar-item">
+        <Navigation />
+      </span>
+    </nav>
+  );
+};
+
 const App = () => {
   return (
     <SentryContext.Provider value={Sentry}>
       <div>
         <Router>
-          <Route path={["/projects/details/:name", "/projects"]}>
-            <nav
-              className="navbar is-primary"
-              role="navigation"
-              aria-label="main navigation"
-            >
-              <span className="navbar-item">
-                <span className="title">sebafudi</span>
-              </span>
-              <span className="navbar-item">
-                <Navigation />
-              </span>
-            </nav>
-          </Route>
-          <Switch>
-            <Route path="/projects/details/:name">
-              <Details />
-            </Route>
-            <Route path="/projects">
-              <SearchParams />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route
+              path="/projects/details/:name"
+              element={
+                <>
+                  <NavBar />
+                  <Details />
+                </>
+              }
+            />
+            <Route
+              path="/projects"
+              element={
+                <>
+                  <NavBar />
+                  <SearchParams />
+                </>
+              }
+            />
+            <Route path="/" element={<Home />} />
+          </Routes>
         </Router>
       </div>
     </SentryContext.Provider>
   );
 };
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+
+root.render(
   <StrictMode>
     <App />
   </StrictMode>,
-  document.getElementById("root")
 );
