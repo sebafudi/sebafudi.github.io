@@ -45,7 +45,7 @@ const App = () => {
         <Router>
           <Routes>
             <Route
-              path="/projects/details/:name"
+              path="/projects/:name"
               element={
                 <>
                   <NavBar />

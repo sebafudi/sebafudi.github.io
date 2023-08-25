@@ -45,7 +45,7 @@ const Project = ({
               <Link
                 className="level-item"
                 aria-label="info"
-                to={`/projects/details/${name}`}
+                to={`/projects/${name}`}
               >
                 <span className="fas fa-info"></span>
               </Link>

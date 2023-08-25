@@ -28,7 +28,7 @@ class Navigation extends Component {
     )
       paths.push({
         name: params.name,
-        path: `/projects/details/${params.name}`,
+        path: `/projects/${params.name}`,
       });
     return <Breadcrumb paths={paths} />;
   }
