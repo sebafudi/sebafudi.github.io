@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.text-animate {
+  background: linear-gradient(-45deg, #c06a4f, #f4045c, #2353e6, #0fe5e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 5s ease infinite;
+  background-size: 400% 400%;
+  font-weight: bold;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* fade in from the botton */
+.fade-from-bottom.settling {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none;
+  filter: blur(5px);
+}
+
+.fade-from-bottom {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  filter: blur(0px);
+}
+/* fade in from the botton */
+.fade-from-bottom-first.settling {
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.fade-from-bottom-first {
+  opacity: 1;
+  transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  filter: blur(0px);
+}
+
+.bg-animate {
+  background: radial-gradient(circle, rgb(35, 40, 182) 0%, rgb(5, 9, 48) 100%);
+  background-size: 200% 200%;
+  animation: bg-animation 60s ease-in-out infinite;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: 0% 0%;
+  }
+  10% {
+    background-position: 100% 100%;
+  }
+  20% {
+    background-position: 0% 100%;
+  }
+  30% {
+    background-position: 100% 0%;
+  }
+  40% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  60% {
+    background-position: 100% 0%;
+  }
+  70% {
+    background-position: 0% 0%;
+  }
+  80% {
+    background-position: 0% 100%;
+  }
+  90% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
