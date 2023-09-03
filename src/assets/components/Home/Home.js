@@ -4,32 +4,18 @@ import "./Home.scss";
 
 function Home() {
   return (
-    <section className="home-container">
-      <div className="home-items">
-        <p className="home-title">hello</p>
-        <p className="home-item">
-          <Link to="/projects">my projects</Link>
-        </p>
-        <p className="home-item">
-          <a
-            href="https://github.com/sebafudi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            github
-          </a>
-        </p>
-        <p className="home-item">
-          <a
-            href="https://www.linkedin.com/in/sebafudi/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            linkedin
-          </a>
-        </p>
+    <>
+      <div class="h-screen bg-animate flex">
+        <span class="align-middle m-auto text-white text-8xl text-center">
+          <div class="italic">Hello!</div>
+          <div>
+            <span>
+              I'm <span class="text-animate">Sebastian</span>
+            </span>
+          </div>
+        </span>
       </div>
-    </section>
+    </>
   );
 }
 
