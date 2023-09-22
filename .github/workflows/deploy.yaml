@@ -49,4 +49,5 @@ jobs:
           script: |
             /opt/ygg/play.sh \
             deploy/static \
-            -e DOMAIN=sbfd.me
+            -e domain=sbfd.me \
+            -e mode=deploy
