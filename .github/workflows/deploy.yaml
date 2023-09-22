@@ -38,7 +38,7 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
           source: sbfd.me
-          target: ~/www/
+          target: /tmp/
       - name: Deploy on host
         uses: appleboy/ssh-action@master
         with:
@@ -47,6 +47,6 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
           script: |
-            ~/play.sh \
-            deploy/build \
+            /opt/ygg/play.sh \
+            deploy/static \
             -e DOMAIN=sbfd.me
