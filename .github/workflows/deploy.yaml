@@ -48,7 +48,11 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
           script: |
-            /opt/ygg/play.sh \
             deploy/static \
             -e domain=sbfd.me \
             -e mode=deploy
+          # script: |
+            # /opt/ygg/play.sh \
+            # deploy/static \
+            # -e domain=sbfd.me \
+            # -e mode=deploy
