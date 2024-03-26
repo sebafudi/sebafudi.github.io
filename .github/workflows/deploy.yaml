@@ -39,7 +39,8 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           uploads: |
-            ./sbfd.me/ => /tmp/
+            ./sbfd.me/ => /tmp/sbfd.me/
+          delete: 'true'
       - name: Deploy on host
         uses: appleboy/ssh-action@master
         with:
