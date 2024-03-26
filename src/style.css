@@ -132,3 +132,37 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.text-big {
+  font-size: 1.5rem;
+}
+
+@screen sm {
+  .text-big {
+    font-size: 2rem;
+  }
+}
+
+@screen md {
+  .text-big {
+    font-size: 3rem;
+  }
+}
+
+@screen lg {
+  .text-big {
+    font-size: 4rem;
+  }
+}
+
+@screen xl {
+  .text-big {
+    font-size: 5rem;
+  }
+}
+
+@screen 2xl {
+  .text-big {
+    font-size: 6rem;
+  }
+}
