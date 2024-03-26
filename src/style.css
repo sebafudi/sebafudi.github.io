@@ -7,7 +7,7 @@ body {
 }
 
 .text-animate {
-  background: linear-gradient(-45deg, #c06a4f, #f4045c, #2353e6, #0fe5e5);
+  background: linear-gradient(-45deg, #af3f1d, #f4045c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-animation 5s ease infinite;
@@ -56,8 +56,9 @@ body {
 }
 
 .bg-animate {
-  background: radial-gradient(circle, rgb(35, 40, 182) 0%, rgb(5, 9, 48) 100%);
+  background: radial-gradient(circle, rgb(0, 0, 0) 0%, rgb(6, 9, 44) 100%);
   background-size: 200% 200%;
+  background-attachment: fixed;
   animation: bg-animation 60s ease-in-out infinite;
 }
 
@@ -94,5 +95,40 @@ body {
   }
   100% {
     background-position: 0% 0%;
+  }
+}
+
+.bg-animate-2 {
+  background: linear-gradient(45deg, #f3ec78, #af4261, #7b4397, #3c5a99);
+  background-size: 400% 400%;
+  animation: bg-animation-2 60s ease-in-out infinite;
+}
+
+@keyframes bg-animation-2 {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.bg-animate-3 { 
+  background: linear-gradient(45deg, #f3ec78, #af4261, #7b4397, #3c5a99);
+  background-size: 400% 400%;
+  animation: bg-animation-3 60s ease-in-out infinite;
+}
+
+@keyframes bg-animation-3 {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
