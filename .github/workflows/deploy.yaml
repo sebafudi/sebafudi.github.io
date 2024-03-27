@@ -50,5 +50,5 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             deploy/static 
-            -e domain=sbfd.me 
-            -e mode=deploy
+            -e domain=sbfd.me
+            -e cert=sbfd.me.cf
