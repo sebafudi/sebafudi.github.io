@@ -6,7 +6,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.text-animate {
+.text-animate.red {
   background: linear-gradient(-45deg, #af3f1d, #f4045c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -128,6 +128,17 @@ body {
 
 .text:not(.text-active)>.text-animate {
   background: linear-gradient(-45deg, white, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 5s ease infinite;
+  background-size: 400% 400%;
+  font-weight: bold;
+}
+
+
+
+.text-animate.blue {
+  background: linear-gradient(-45deg, #2daadb, #1664ca);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-animation 5s ease infinite;
