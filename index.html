@@ -1,55 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>sbfd.me</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <title>sbfd.me</title>
-</head>
-
-<body>
-  <div id="app" class="bg-animate">
-    <div class="h-screen flex items-center" style="padding-left: 10%;">
-      <span class="text-white text-big">
-        <div class="w-full fading-text text-active">Hello, I'm <span class="text-animate red">Sebastian</span></div>
-        <div class="w-full fading-text">I'm a <span class="text-animate red">DevOps Engineer</span></div>
-        <div class="w-full fading-text">and a <span class="text-animate red">Software Developer</span></div>
-        <div class="w-full fading-text">visit my <span class="text-animate blue"><a href="https://github.com/sebafudi"
-              target="_blank">GitHub</a></span>
-        </div>
-        <div class="w-full fading-text">and <span class="text-animate blue"><a
-              href="https://www.linkedin.com/in/sebafudi/" target="_blank">LinkedIn</a></span></div>
-        <div class="w-full fading-text">or see my <span class="text-animate blue"><a
-              href="#projects">Projects</a></span></div>
-      </span>
-    </div>
-    <div class="h-screen flex items-center" style="padding-left: 10%;" id="projects">
-      <span class="text-white text-big">
+  <body>
+    <div id="app" class="bg-animate">
+      <div class="h-screen flex items-center" style="padding-left: 10%">
+        <span class="text-white text-big">
+          <div class="w-full fading-text text-active">
+            Hello, I'm <span class="text-animate red">Sebastian</span>
+          </div>
+          <div class="w-full fading-text">
+            I'm a <span class="text-animate red">DevOps Engineer</span>
+          </div>
+          <div class="w-full fading-text">
+            and a <span class="text-animate red">Software Developer</span>
+          </div>
+          <div class="w-full fading-text">
+            visit my
+            <span class="text-animate blue"
+              ><a href="https://github.com/sebafudi" target="_blank"
+                >GitHub</a
+              ></span
+            >
+          </div>
+          <div class="w-full fading-text">
+            and
+            <span class="text-animate blue"
+              ><a href="https://www.linkedin.com/in/sebafudi/" target="_blank"
+                >LinkedIn</a
+              ></span
+            >
+          </div>
+          <div class="w-full fading-text">
+            or see my
+            <span class="text-animate blue"
+              ><a href="#projects">Projects</a></span
+            >
+          </div>
+        </span>
+      </div>
+      <div class="w-full" id="projects">
         <div class="projects-container">
-          <div class="project flex flex-col items-start space-y-4">
-            <h2 class="text-2xl font-bold">the Yggdrasil</h2>
-            <p class="">Description of Project 1</p>
-            <img src="project1.webp" alt="Project 1 Image" class="w-full h-64 object-cover">
-            <div class="technologies">
-              <h3 class="text-lg font-bold">Technologies Used:</h3>
-              <ul class="project-technologies flex space-x-4">
-                <li><img src="proxmox-logo-stacked-inverted-color.svg" alt="Proxmox" class="w-auto h-16 object-contain"
-                    title="Proxmox">
-                </li>
-                <li><img src="Alpine_Linux.svg" alt="Alpine" class="w-32 h-16 object-contain" title="Alpine Linux">
-                </li>
-                <li><img src="Jenkins_logo.svg" alt="Jenkins" class="h-16 object-contain" title="Jenkins">
-                </li>
-                <li><img src="docker-logo-white.svg" alt="Docker" class="w-32 h-16 object-contain" title="Docker">
-              </ul>
-            </div>
+          <div class="project h-screen flex items-center pl-10 w-9/12" id="ygg">
+            <span class="text-white text-big">
+              <div class="project flex flex-col items-start space-y-4">
+                <h2 class="text-2xl font-bold">the Yggdrasil</h2>
+                <p class="uppercase">
+                  <span class="text-animate red">Multi-Site</span> Home Lab
+                </p>
+                <img
+                  src="project1.webp"
+                  alt="Project 1 Image"
+                  class="w-full h-64 object-cover"
+                />
+                <div class="technologies">
+                  <h3 class="text-lg max-w-prose">
+                    <span class="font-bold text-sm">Technologies Used:</span>
+                    Proxmox, OPNSense, Linux (Alpine), Kubernetes (K3s cluster,
+                    MetalLB), Packer, Docker, docker-compose, NGINX, pm2, bash,
+                    Ansible, Jenkins, PKI, WireGuard, bind9, Cloduflare,
+                    OPNsense, OpenWrt, Grafana, Proxmox Backup Server, Mailu,
+                    Proxmox Mail Gateway
+                  </h3>
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            class="project h-screen flex items-center pl-10 w-9/12"
+            id="lydlys"
+          >
+            <span class="text-white text-big">
+              <div class="project flex flex-col items-start space-y-4">
+                <h2 class="text-2xl font-bold">lydlys</h2>
+                <p class="uppercase">
+                  Music Festival at
+                  <span class="text-animate red">Home</span>
+                </p>
+                <img
+                  src="lydlys.png"
+                  alt="Project 1 Image"
+                  class="w-full h-64 object-cover"
+                />
+                <div class="technologies">
+                  <h3 class="text-lg max-w-prose">
+                    <span class="font-bold text-sm">Technologies Used:</span>
+                    Golang, WLED
+                  </h3>
+                </div>
+              </div>
+            </span>
           </div>
         </div>
-      </span>
+      </div>
     </div>
-  </div>
-  <script type="module" src="/src/main.ts"></script>
-</body>
-
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
