@@ -6,15 +6,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.text-animate.red {
-  background: linear-gradient(-45deg, #af3f1d, #f4045c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-animation 5s ease infinite;
-  background-size: 400% 400%;
-  font-weight: bold;
-}
-
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -117,7 +108,7 @@ body {
   }
 }
 
-.text {
+.fading-text {
   opacity: 0.15;
   transition: opacity 0.5s;
 }
@@ -126,22 +117,38 @@ body {
   opacity: 1;
 }
 
-.text:not(.text-active)>.text-animate {
+.fading-text:not(.text-active)>.text-animate {
   background: linear-gradient(-45deg, white, white);
-  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 5s ease infinite;
+  background-size: 400% 400%;
+  font-weight: bold;
+
+}
+
+.text-animate.blue {
+  background: linear-gradient(-45deg, #2daadb, #1664ca);
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-animation 5s ease infinite;
   background-size: 400% 400%;
   font-weight: bold;
 }
 
-
-
-.text-animate.blue {
-  background: linear-gradient(-45deg, #2daadb, #1664ca);
-  -webkit-background-clip: text;
+.text-animate.red {
+  background: linear-gradient(-45deg, #af3f1d, #f4045c);
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-animation 5s ease infinite;
   background-size: 400% 400%;
   font-weight: bold;
+}
+
+#projects {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: auto;
 }

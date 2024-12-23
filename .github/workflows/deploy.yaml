@@ -26,29 +26,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+      uses: actions/checkout@v3
       - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: dist
-          path: sbfd.me
-      - name: Upload build to host
-        uses: Dylan700/sftp-upload-action@latest
-        with: 
-          server: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          uploads: |
-            ./sbfd.me/ => /tmp/sbfd.me/
-          delete: 'true'
-      - name: Deploy on host
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          port: ${{ secrets.PORT }}
-          key: ${{ secrets.KEY }}
-          script: |
-            deploy/static 
-            -e domain=sbfd.me
-            -e cert=sbfd.me.cf
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist/
+      - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./dist
