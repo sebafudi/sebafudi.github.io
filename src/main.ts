@@ -1,12 +1,13 @@
 import './style.css';
+import '../test.html';
 const texts = document.querySelectorAll('.fading-text');
 
 texts.forEach((text) => {
-    text.addEventListener('mouseover', () => {
-        const activeText = document.querySelector('.text-active');
-        if (activeText) {
-            activeText.classList.remove('text-active');
-        }
-        text.classList.add('text-active');
-    });
+  text.addEventListener('mouseover', () => {
+    const activeText = document.querySelector('.text-active');
+    if (activeText) {
+      activeText.classList.remove('text-active');
+    }
+    text.classList.add('text-active');
+  });
 });
