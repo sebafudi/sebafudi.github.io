@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Quiz App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .question {
+        margin-bottom: 20px;
+      }
+      .options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      button {
+        padding: 10px;
+        cursor: pointer;
+      }
+      .feedback {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      .correct {
+        color: green;
+      }
+      .incorrect {
+        color: red;
+      }
+      #score {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="score">
+      Score: <span id="correct-count">0</span>/<span id="total-count">0</span>
+    </div>
+    <div id="quiz-container"></div>
+    <button id="next-btn" style="display: none">Next Question</button>
+
+    <script>
+      const quizData = {
+        questions: [
+          {
+            question:
+              'Jakie ryzyko może wynikać z niewłaściwego filtrowania danych wejściowych w aplikacji?',
+            correct_answer: 'SQL Injection',
+            incorrect_answers: [
+              'Utrata dostępu do bazy danych',
+              'Brak funkcji filtrowania',
+              'Zwiększona responsywność aplikacji',
+            ],
+          },
+          {
+            question:
+              'Który mechanizm najlepiej chroni przed atakami typu XSS?',
+            correct_answer: 'Kodowanie danych wyjściowych',
+            incorrect_answers: [
+              'Instalacja firewalla',
+              'Wprowadzenie limitu czasu sesji',
+              'Używanie przestarzałych algorytmów szyfrowania',
+            ],
+          },
+          {
+            question: 'Czym charakteryzuje się walidacja danych wejściowych?',
+            correct_answer:
+              'Sprawdzaniem zgodności danych z oczekiwanym formatem lub typem',
+            incorrect_answers: [
+              'Usuwaniem białych znaków z ciągów tekstowych',
+              'Zmianą kodowania danych na UTF-8',
+              'Tworzeniem kopii zapasowych bazy danych',
+            ],
+          },
+          {
+            question:
+              'Które z poniższych działań najlepiej zapobiega wstrzyknięciom SQL?',
+            correct_answer: 'Stosowanie sparametryzowanych zapytań SQL',
+            incorrect_answers: [
+              'Kodowanie danych w UTF-8',
+              'Filtrowanie tylko niektórych danych wejściowych',
+              'Unikanie używania baz danych w aplikacji',
+            ],
+          },
+          {
+            question:
+              'Które z poniższych narzędzi pomaga w testowaniu aplikacji pod kątem podatności na niewłaściwe filtrowanie danych wejściowych?',
+            correct_answer: 'Burp Suite',
+            incorrect_answers: ['Jenkins', 'Postman', 'Google Analytics'],
+          },
+          {
+            question: 'Co oznacza sanityzacja danych w kontekście filtrowania?',
+            correct_answer:
+              'Usuwanie lub przekształcanie danych wejściowych w celu zapewnienia ich bezpieczeństwa',
+            incorrect_answers: [
+              'Tworzenie bardziej przejrzystego interfejsu użytkownika',
+              'Wyłączanie pól formularzy niedostępnych dla użytkownika',
+              'Przyspieszenie zapytań SQL poprzez użycie indeksów',
+            ],
+          },
+          {
+            question: 'Z poniżej wymienionych spamem są:',
+            correct_answer: 'Niechciane wiadomości',
+            incorrect_answers: ['Ataki DDOS', 'Firewall', 'DNS spoofing'],
+          },
+          {
+            question:
+              'Które z poniższych oznacza typowy znak wiadomości phishingowej (spamu)?',
+            correct_answer: 'Błędne adresy e-mail i podejrzane linki',
+            incorrect_answers: [
+              'Profesjonalne logo firmy',
+              'Wykorzystanie języka formalnego',
+              'Brak jakichkolwiek załączników',
+            ],
+          },
+          {
+            question:
+              'Jakiego rodzaju certyfikat jest używany w protokole Secure Sockets Layer (SSL)?',
+            correct_answer: 'Certyfikat SSL',
+            incorrect_answers: [
+              'Certyfikat kulinarny',
+              'Certyfikat sportowy',
+              'Certyfikat Netscape Communications Corporation',
+            ],
+          },
+          {
+            question: 'Co chroni protokół Secure Sockets Layer (SSL)?',
+            correct_answer: 'Komunikację online',
+            incorrect_answers: [
+              'Szyfrowane kable elektryczne',
+              'Proces pieczenia chleba',
+              'Uwierzetelnione budynki mieszkalne',
+            ],
+          },
+          {
+            question:
+              'Który port jest standardowo używany przez protokół Secure Sockets Layer (SSL)?',
+            correct_answer: 'Port 443',
+            incorrect_answers: ['Port 12345', 'Port HDMI', 'Port 1995'],
+          },
+          {
+            question:
+              'Jakie dane są szyfrowane za pomocą Secure Sockets Layer (SSL)?',
+            correct_answer: 'Dane przesyłane przez sieć',
+            incorrect_answers: [
+              'Dane zapisane na lodówce',
+              'Dane meteorologiczne',
+              'Dane z książki kucharskiej',
+            ],
+          },
+          {
+            question:
+              'Jaki symbol w przeglądarce wskazuje na użycie Secure Sockets Layer (SSL)?',
+            correct_answer: 'Kłódka',
+            incorrect_answers: ['Kwiatek', 'Kwadrat', 'Obrazek kota'],
+          },
+          {
+            question:
+              'Które zagadnienie z poniższych NIE należy do OWASP Top Ten?',
+            correct_answer: 'Blockchain Exploits',
+            incorrect_answers: [
+              'SQL Injection',
+              'Cross-Site Scripting (XSS)',
+              'Broken Access Control',
+            ],
+          },
+          {
+            question:
+              'Które stwierdzenie dotyczące ryzyka projektowego jest niepoprawne:',
+            correct_answer: 'Ryzyko projektowe można całkowicie wyeliminować',
+            incorrect_answers: [
+              'Problemy techniczne, organizacyjne i związane z dostawcami to przykłady ryzyk projektowych',
+              'Ryzyko projektowe może być minimalizowane poprzez regularną analizę i ocenę potencjalnych zagrożeń',
+              'Planowanie działań łagodzących ryzyko jest kluczowe dla zwiększenia szans na sukces projektu',
+            ],
+          },
+          {
+            question: 'Które z poniższych produktów nie jest projektem OWASP',
+            correct_answer: 'Splunk',
+            incorrect_answers: [
+              'JuiceShop',
+              'Dependency Track',
+              'OWASP Top Ten',
+            ],
+          },
+          {
+            question: 'Wybierz z poniższych ryzyko projektowe:',
+            correct_answer: 'problemy natury politycznej',
+            incorrect_answers: [
+              'błędy w kodzie struktury sterowania pętlą',
+              'niewykonywanie zakładanych funkcji oprogramowania zgodnie z potrzebami',
+              'niepoprawne wykonywanie konkretnych obliczeń w niektórych okolicznościach',
+            ],
+          },
+          {
+            question: 'Co oznacza skrót OWASP?',
+            correct_answer: 'Open Worldwide Application Security Project',
+            incorrect_answers: [
+              'Open Web Application Security Program',
+              'Online Web Application System Protocol',
+              'Open Worldwide Application Security Plan',
+            ],
+          },
+          {
+            question:
+              'Co to jest luka w zabezpieczeniach Cross-Site Scripting (XSS)?',
+            correct_answer:
+              'Wstrzyknięcie kodu, który jest wykonywany po stronie przeglądarki użytkownika',
+            incorrect_answers: [
+              'Błąd umożliwiający przekierowanie użytkownika na złośliwą stronę',
+              'Luka umożliwiająca wyciek danych uwierzytelniających',
+              'Mechanizm kontroli dostępu między domenami',
+            ],
+          },
+          {
+            question: 'Co opisuje luka Cross Site Script Inclusion (XSSI)?',
+            correct_answer:
+              'Luka XSSI umożliwia atakującemu wykradanie wrażliwych danych poprzez wykorzystanie JavaScriptu po stronie klienta do odczytu poufnych informacji z uwierzytelnionych sesji',
+            incorrect_answers: [
+              'Luka XSSI umożliwia atakującemu wykonywanie działań zmieniających stan na stronie ofiary, takich jak przelew środków na konto atakującego, poprzez wykorzystanie uwierzytelnionego kontekstu użytkownika',
+              'Luka XSSI pozwala na zdalne przejęcie kontroli nad serwerem za pomocą wysyłania złośliwych żądań HTTP, które modyfikują konfigurację serwera',
+              'Luka XSSI to metoda ataku, która polega na przechwytywaniu ruchu sieciowego między serwerem a klientem w celu wykradania danych uwierzytelniających',
+            ],
+          },
+          {
+            question:
+              'Które z poniższych mechanizmów przechowywania danych są udostępniane deweloperom przez przeglądarki do przechowywania danych po stronie klienta?',
+            correct_answer:
+              'Magazyn lokalny, pamięć sesji, IndexedDB, Web SQL (przestarzałe), pliki cookie',
+            incorrect_answers: [
+              'Pamięć operacyjna przeglądarki, pamięć podręczna serwera, pliki lokalne, bazy danych SQL',
+              'Wyłącznie pamięć sesji oraz Web SQL',
+              'Narzędzia programistyczne przeglądarki (DevTools) służące do debugowania aplikacji i przechowywania danych',
+            ],
+          },
+          {
+            question: 'Czym jest Clickjacking?',
+            correct_answer:
+              'To złośliwa technika, w której użytkownik sieci jest oszukiwany w celu interakcji (w większości przypadków poprzez kliknięcie) z czymś innym niż to, z czym użytkownik uważa, że wchodzi w interakcję',
+            incorrect_answers: [
+              'Jest to typ testów penetracyjnych, pozwalający łatwo sprawdzić działanie zabezpieczeń aplikacji webowej',
+              'Umożliwiaia klientowi lub serwerowi utworzenie kanału komunikacyjnego "full-duplex" (dwukierunkowego), umożliwiając klientowi i serwerowi prawdziwą komunikację asynchroniczną',
+              'Jest to błąd w walidacji danych wejściowych, który występuje, gdy aplikacja akceptuje dane wejściowe kontrolowane przez użytkownika, które określają link prowadzący do zewnętrznego adresu URL, który może być złośliwy',
+            ],
+          },
+          {
+            question:
+              'Który mechanizm umożliwia komunikację między różnymi domenami w bezpieczny sposób?',
+            correct_answer: 'Cross Document Messaging',
+            incorrect_answers: ['WebSockets', 'Clickjacking', 'IndexedDB'],
+          },
+          {
+            question: 'Czym są testy penetracyjne:',
+            correct_answer: 'Testy bezpieczeństwa',
+            incorrect_answers: [
+              'Testy ciążowe',
+              'Testy na ojcostwo',
+              'Testy obciążeniowe',
+            ],
+          },
+          {
+            question: 'Co to jest wstrzyknięcie SQL (SQL Injection)?',
+            correct_answer:
+              'Wykonanie nieautoryzowanych poleceń w bazie danych',
+            incorrect_answers: [
+              'Zainstalowanie wirusa na serwerze',
+              'Zmiana haseł użytkowników',
+              'Przechwycenie danych w sieci',
+            ],
+          },
+          {
+            question:
+              'Co najlepiej opisuje sytuację wyścigu (ang. race condition)?',
+            correct_answer:
+              'Gdy kolejność wykonania współbieżnych sekcji kodu jest nieprzewidywalna, co prowadzi do błędów',
+            incorrect_answers: [
+              'Gdy dwie sekcje kodu są wykonywane w kolejności z góry ustalonej przez programistę',
+              'Gdy dwie sekcje kodu działają zawsze poprawnie bez względu na ich kolejność wykonania',
+              'Gdy wszystkie wątki są zsynchronizowane i korzystają z tych samych zasobów w określonym czasie',
+            ],
+          },
+          {
+            question:
+              'Single Sign-On (SSO) - mechanizm wielokrotnego logowania, zaznacz które z wymienionych nie jest metodą jego implementacji:',
+            correct_answer: 'Logme-in',
+            incorrect_answers: [
+              'SAML',
+              'OAuth',
+              'Współdzielenie plików cookie',
+            ],
+          },
+          {
+            question:
+              'Która z poniższych metod nie należy do standardowych mechanizmów 2FA?',
+            correct_answer: 'Weryfikacja za pomocą CAPTCHA',
+            incorrect_answers: [
+              'Kod generowany przez aplikację uwierzytelniającą',
+              'Klucz sprzętowy (np. YubiKey)',
+              'Kod SMS wysyłany na telefon',
+            ],
+          },
+        ],
+      };
+
+      let currentQuestionIndex = 0;
+      let correctCount = 0;
+      let totalCount = 0;
+      const quizContainer = document.getElementById('quiz-container');
+      const nextButton = document.getElementById('next-btn');
+      const scoreElement = document.getElementById('score');
+      const correctCountElement = document.getElementById('correct-count');
+      const totalCountElement = document.getElementById('total-count');
+      const answerMap = new Map();
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      function displayQuestion() {
+        const question = quizData.questions[currentQuestionIndex];
+        const allAnswers = [
+          question.correct_answer,
+          ...question.incorrect_answers,
+        ];
+        const shuffledAnswers = shuffleArray(allAnswers);
+
+        let questionHTML = `
+        <div class="question">
+            <h2>${question.question}</h2>
+            <div class="options">
+                ${shuffledAnswers
+                  .map(
+                    (answer) => `
+                    <button onclick="checkAnswer('${answer}')">${answer}</button>
+                `
+                  )
+                  .join('')}
+            </div>
+            <div class="feedback"></div>
+        </div>
+    `;
+
+        quizContainer.innerHTML = questionHTML;
+        nextButton.style.display = 'none';
+        updateScore();
+      }
+
+      function checkAnswer(selectedAnswer) {
+        const question = quizData.questions[currentQuestionIndex];
+        const feedbackElement = document.querySelector('.feedback');
+        const buttons = document.querySelectorAll('.options button');
+
+        buttons.forEach((button) => (button.disabled = true));
+
+        if (selectedAnswer === question.correct_answer) {
+          feedbackElement.textContent = 'Correct!';
+          feedbackElement.className = 'feedback correct';
+          correctCount++;
+          answerMap.set(currentQuestionIndex, true);
+        } else {
+          feedbackElement.textContent = `Incorrect. The correct answer is: ${question.correct_answer}`;
+          feedbackElement.className = 'feedback incorrect';
+          answerMap.set(currentQuestionIndex, false);
+        }
+
+        totalCount++;
+        updateScore();
+        nextButton.style.display = 'block';
+      }
+
+      function updateScore() {
+        correctCountElement.textContent = correctCount;
+        totalCountElement.textContent = totalCount;
+      }
+
+      function showSummary() {
+        let summaryHTML = '<h2>Quiz Summary</h2>';
+        summaryHTML += `<p>Final Score: ${correctCount}/${totalCount}</p>`;
+        summaryHTML += '<h3>Questions:</h3>';
+
+        quizData.questions.forEach((question, index) => {
+          const isCorrect = answerMap.get(index);
+          summaryHTML += `
+            <p>
+                <strong>Q${index + 1}:</strong> ${question.question}<br>
+                <span class="${isCorrect ? 'correct' : 'incorrect'}">
+                    ${isCorrect ? 'Correct' : 'Incorrect'}
+                </span><br>
+                <strong>Correct Answer:</strong> ${question.correct_answer}
+            </p>
+        `;
+        });
+
+        quizContainer.innerHTML = summaryHTML;
+        nextButton.style.display = 'none';
+        scoreElement.style.display = 'none';
+      }
+
+      nextButton.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.questions.length) {
+          displayQuestion();
+        } else {
+          showSummary();
+        }
+      });
+
+      displayQuestion();
+    </script>
+  </body>
+</html>
