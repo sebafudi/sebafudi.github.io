@@ -59,438 +59,155 @@
       const quizData = {
         questions: [
           {
-            type: 'multiple',
+            type: 'open',
             question:
-              'Jakie ryzyko może wynikać z niewłaściwego filtrowania danych wejściowych w aplikacji?',
-            correct_answer: 'SQL Injection',
+              'Dlaczego mapujemy encje do transfer obiektów (TO, DTO)? Czym może grozić wysłanie encji przez REST API do klienta webowego? Jaki ma to związek z fetchType = LAZY/EAGER?',
+            sample_answer:
+              'Mapowanie encji do DTO pozwala na kontrolę przesyłanych danych, unikanie problemów z lazy loading, i zwiększenie bezpieczeństwa. Wysłanie encji przez REST API może prowadzić do wycieków danych i problemów wydajnościowych. FetchType LAZY może powodować błędy przy serializacji, jeśli sesja Hibernate jest już zamknięta.',
+          },
+          {
+            type: 'multiple',
+            question: 'Kiedy dane w transakcji zapisywane są do bazy?',
+            correct_answer: 'Na końcu transakcji',
             incorrect_answers: [
-              'Utrata dostępu do bazy danych',
-              'Brak funkcji filtrowania',
-              'Zwiększona responsywność aplikacji',
+              'W momencie wywołania flusha',
+              'W momencie wywołania metody update/save/persist',
+              'W osobnym rollbacku',
             ],
+          },
+          {
+            type: 'open',
+            question:
+              'Wyjaśnij różnicę między wątkami (thread) a transakcjami (transaction) i jakie warunki dla transakcji muszą być spełnione aby sprawdzić kontrolę równoległego dostępu do danych w bazie.',
+            sample_answer:
+              'Wątki to jednostki wykonawcze w programie, podczas gdy transakcje to logiczne jednostki pracy w bazie danych. Dla kontroli równoległego dostępu, transakcje muszą być atomowe, spójne, izolowane i trwałe (ACID).',
           },
           {
             type: 'multiple',
             question:
-              'Który mechanizm najlepiej chroni przed atakami typu XSS?',
-            correct_answer: 'Kodowanie danych wyjściowych',
-            incorrect_answers: [
-              'Instalacja firewalla',
-              'Wprowadzenie limitu czasu sesji',
-              'Używanie przestarzałych algorytmów szyfrowania',
-            ],
+              'Encja została pobrana z bazy i przesłana przez REST API do aplikacji webowej. Przed wysłaniem danych transakcja została zakończona. W jakim stanie znajduje się encja w momencie wysyłania przez REST API?',
+            correct_answer: 'Detached',
+            incorrect_answers: ['Removed', 'Persisted', 'Transient'],
+          },
+          {
+            type: 'open',
+            question:
+              'Jak zapisywane są wartości Enum w przypadku użycia adnotacji @Enumerated z następującymi parametrami: a) EnumType.STRING, b) EnumType.ORDINAL, c) brak parametru adnotacji?',
+            sample_answer:
+              'a) EnumType.STRING - zapisywane jako string, b) EnumType.ORDINAL - zapisywane jako liczba porządkowa, c) brak parametru - domyślnie jako EnumType.ORDINAL.',
           },
           {
             type: 'multiple',
-            question: 'Czym charakteryzuje się walidacja danych wejściowych?',
+            question:
+              'Które adnotacje są niezbędne aby Hibernate mógł powiązać klasę z tabelą (lub stworzyć nową, w zależności od konfiguracji)?',
+            correct_answer: '@Entity',
+            incorrect_answers: ['@Column', '@Table', '@Id'],
+          },
+          {
+            type: 'multiple',
+            question:
+              'W bazie danych zdefiniowano relację jeden do wielu między tabelami REZERWACJA i KLIENT. Która z poniższych relacji w Hibernate odpowiada rzeczywistej relacji w bazie danych?',
             correct_answer:
-              'Sprawdzaniem zgodności danych z oczekiwanym formatem lub typem',
+              'rzeczywista - ManyToOne od strony KLIENT, poprawna - OneToMany od strony REZERWACJA',
             incorrect_answers: [
-              'Usuwaniem białych znaków z ciągów tekstowych',
-              'Zmianą kodowania danych na UTF-8',
-              'Tworzeniem kopii zapasowych bazy danych',
+              'rzeczywista - ManyToOne od strony KLIENT, sztuczna - OneToMany od strony REZERWACJA',
+              'rzeczywista - OneToMany od strony KLIENT, sztuczna - ManyToOne od strony REZERWACJA',
+              'rzeczywista - OneToMany od strony KLIENT, poprawna - ManyToOne od strony REZERWACJA',
             ],
+          },
+          {
+            type: 'open',
+            question:
+              'Jaki mechanizm uniemożliwia nadpisanie zmian przy równoległej edycji tych samych danych? Na czym polega implementacja w JPA?',
+            sample_answer:
+              'Mechanizm optymistycznego blokowania (Optimistic Locking). W JPA implementuje się go najczęściej za pomocą adnotacji @Version na polu encji, które automatycznie inkrementuje się przy każdej aktualizacji.',
+          },
+          {
+            type: 'multiple',
+            question: 'Co NIE należy do zadań entity managera (EntityManager)?',
+            correct_answer: 'Tworzenie połączenia z bazą danych',
+            incorrect_answers: [
+              'Zapewnienie generycznych metod CRUDowych',
+              'Wspomaganie zarządzania transakcją (np. flush, clear)',
+              'Tworzenie zapytań JPQL',
+            ],
+          },
+          {
+            type: 'open',
+            question:
+              'Wyjaśnij, czym jest Spring Controller i jaką rolę pełni w architekturze aplikacji opartej na Spring Framework.',
+            sample_answer:
+              'Spring Controller to komponent odpowiedzialny za obsługę żądań HTTP w aplikacji Spring. Pełni rolę pośrednika między warstwą prezentacji a logiką biznesową, przetwarzając żądania, wywołując odpowiednie serwisy i zwracając odpowiedzi.',
           },
           {
             type: 'multiple',
             question:
-              'Które z poniższych działań najlepiej zapobiega wstrzyknięciom SQL?',
-            correct_answer: 'Stosowanie sparametryzowanych zapytań SQL',
-            incorrect_answers: [
-              'Kodowanie danych w UTF-8',
-              'Filtrowanie tylko niektórych danych wejściowych',
-              'Unikanie używania baz danych w aplikacji',
-            ],
-          },
-          {
-            type: 'multiple',
-            question:
-              'Które z poniższych narzędzi pomaga w testowaniu aplikacji pod kątem podatności na niewłaściwe filtrowanie danych wejściowych?',
-            correct_answer: 'Burp Suite',
-            incorrect_answers: ['Jenkins', 'Postman', 'Google Analytics'],
-          },
-          {
-            type: 'multiple',
-            question: 'Co oznacza sanityzacja danych w kontekście filtrowania?',
+              'Które z poniższych stwierdzeń dotyczących konfiguracji aplikacji w Spring Boot jest prawdziwe?',
             correct_answer:
-              'Usuwanie lub przekształcanie danych wejściowych w celu zapewnienia ich bezpieczeństwa',
+              'Właściwości aplikacji mogą być określone w pliku application.properties, pliku application.yaml lub jako przełączniki wiersza poleceń',
             incorrect_answers: [
-              'Tworzenie bardziej przejrzystego interfejsu użytkownika',
-              'Wyłączanie pól formularzy niedostępnych dla użytkownika',
-              'Przyspieszenie zapytań SQL poprzez użycie indeksów',
+              'Właściwości aplikacji mogą być określone tylko w pliku application.yaml',
+              'Spring Boot nie obsługuje plików konfiguracyjnych application.properties ani application.yaml',
+              'Właściwości aplikacji mogą być określone tylko jako przełączniki wiersza poleceń',
             ],
           },
           {
             type: 'open',
             question:
-              'Na czym polega walidacja danych wejściowych i dlaczego jest kluczowa w aplikacjach webowych?',
-          },
-          {
-            type: 'open',
-            question:
-              'Jakie są konsekwencje braku filtrowania danych w aplikacjach webowych?',
-          },
-          {
-            type: 'open',
-            question: 'Czym różni się walidacja od sanityzacji danych?',
-          },
-          {
-            type: 'open',
-            question:
-              'Dlaczego filtrowanie danych jest ważne z punktu widzenia bezpieczeństwa aplikacji webowych?',
-          },
-          {
-            type: 'open',
-            question:
-              'Jakie podstawowe zasady należy stosować, aby chronić swoją skrzynkę pocztową przed spamem? Podaj 3 zasady',
-          },
-          {
-            type: 'open',
-            question: 'Wymień 3 narzędzia antyspamowe jakie znasz.',
-          },
-          {
-            type: 'open',
-            question:
-              'Czym jest czarna lista w kontekście ochrony przed spamem?',
-          },
-          {
-            type: 'open',
-            question:
-              'Czym jest biała lista w kontekście ochrony przed spamem?',
-          },
-          {
-            type: 'open',
-            question: 'Wymień 3 zagrożenia jakie niesie spam.',
+              'Jak działa mechanizm Dependency Injection (DI)? Podaj przykłady wykorzystania w projekcie realizowanego w ramach laboratorium.',
+            sample_answer:
+              'Dependency Injection to wzorzec projektowy, w którym zależności obiektu są dostarczane z zewnątrz, a nie tworzone wewnątrz obiektu. W Spring, DI realizuje się najczęściej przez konstruktor, settery lub adnotacje. Przykład: wstrzykiwanie repozytorium do serwisu za pomocą konstruktora lub adnotacji @Autowired.',
           },
           {
             type: 'multiple',
             question:
-              'Które z poniższych rozwiązań jest najczęściej używane do ochrony przed spamem?',
-            correct_answer: 'Filtry antyspamowe',
-            incorrect_answers: [
-              'Blokowanie plików cookies',
-              'Wyłączanie Wi-Fi',
-              'Zmiana przeglądarki',
-            ],
-          },
-          {
-            type: 'multiple',
-            question: "Co oznacza termin 'spam'?",
-            correct_answer: 'Niechciane i masowe wiadomości',
-            incorrect_answers: [
-              'Legalne wiadomości reklamowe',
-              'Prywatne wiadomości od znajomych',
-              'Szyfrowane e-maile biznesowe',
-            ],
-          },
-          {
-            type: 'multiple',
-            question:
-              'Która z poniższych metod NIE jest skuteczna w walce ze spamem?',
+              'Która z poniższych odpowiedzi dotyczących adnotacji @Async w Spring jest prawidłowa?',
             correct_answer:
-              'Udostępnianie swojego e-maila na forach publicznych',
+              'Adnotacja @Async w Spring pozwala na oznaczenie metod, które powinny być wykonywane asynchronicznie.',
             incorrect_answers: [
-              'Używanie filtrów antyspamowych',
-              'Regularne aktualizowanie oprogramowania',
-              'Unikanie otwierania podejrzanych załączników',
-            ],
-          },
-          {
-            type: 'multiple',
-            question: 'Z poniżej wymienionych spamem są:',
-            correct_answer: 'Niechciane wiadomości',
-            incorrect_answers: ['Ataki DDOS', 'Firewall', 'DNS spoofing'],
-          },
-          {
-            type: 'multiple',
-            question:
-              'Które z poniższych oznacza typowy znak wiadomości phishingowej (spamu)?',
-            correct_answer: 'Błędne adresy e-mail i podejrzane linki',
-            incorrect_answers: [
-              'Profesjonalne logo firmy',
-              'Wykorzystanie języka formalnego',
-              'Brak jakichkolwiek załączników',
-            ],
-          },
-          {
-            type: 'open',
-            question: 'Co oznacza skrót SSL?',
-          },
-          {
-            type: 'open',
-            question: 'Kto stworzył pierwszą wersję protokołu SSL?',
-          },
-          {
-            type: 'open',
-            question: 'Jakie dwie główne funkcje bezpieczeństwa oferuje SSL?',
-          },
-          {
-            type: 'open',
-            question:
-              'W którym roku wprowadzono pierwszą wersję protokołu SSL?',
-          },
-          {
-            type: 'open',
-            question:
-              'W jaki sposób można sprawdzić, czy strona korzysta z SSL?',
-          },
-          {
-            type: 'multiple',
-            question:
-              'Jakiego rodzaju certyfikat jest używany w protokole Secure Sockets Layer (SSL)?',
-            correct_answer: 'Certyfikat SSL',
-            incorrect_answers: [
-              'Certyfikat kulinarny',
-              'Certyfikat sportowy',
-              'Certyfikat Netscape Communications Corporation',
-            ],
-          },
-          {
-            type: 'multiple',
-            question: 'Co chroni protokół Secure Sockets Layer (SSL)?',
-            correct_answer: 'Komunikację online',
-            incorrect_answers: [
-              'Szyfrowane kable elektryczne',
-              'Proces pieczenia chleba',
-              'Uwierzetelnione budynki mieszkalne',
+              'Adnotacja @Async może być używana tylko na poziomie klasy, a nie na poziomie metody.',
+              'Spring Async automatycznie zarządza transakcjami dla asynchronicznych metod, zapewniając spójność danych.',
+              'Spring Async jest dostępny tylko dla aplikacji napisanych w języku Groovy.',
             ],
           },
           {
             type: 'multiple',
             question:
-              'Który port jest standardowo używany przez protokół Secure Sockets Layer (SSL)?',
-            correct_answer: 'Port 443',
-            incorrect_answers: ['Port 12345', 'Port HDMI', 'Port 1995'],
-          },
-          {
-            type: 'multiple',
-            question:
-              'Jakie dane są szyfrowane za pomocą Secure Sockets Layer (SSL)?',
-            correct_answer: 'Dane przesyłane przez sieć',
+              'Które z poniższych stwierdzeń jest prawdziwe dla mechanizmu Spring Event?',
+            correct_answer: 'Spring Event jest częścią modułu Spring Context.',
             incorrect_answers: [
-              'Dane zapisane na lodówce',
-              'Dane meteorologiczne',
-              'Dane z książki kucharskiej',
+              'Aby poprawnie działać, mechanizm Spring Event nie wymaga tworzenia Eventu, Publishera i Listenera.',
+              'Rozpoczęcie pracy z mechanizmem Spring Event wymaga konfiguracji.',
+              'Spring Event nie zapewnia wsparcia dla mechanizmu wywoływania/obsługi zdarzeń.',
             ],
           },
           {
             type: 'multiple',
             question:
-              'Jaki symbol w przeglądarce wskazuje na użycie Secure Sockets Layer (SSL)?',
-            correct_answer: 'Kłódka',
-            incorrect_answers: ['Kwiatek', 'Kwadrat', 'Obrazek kota'],
-          },
-          {
-            type: 'open',
-            question: 'Czym jest OWASP Top 10?',
-          },
-          {
-            type: 'open',
-            question: 'Co zapewnia OWASP MAS (Mobile Application Security)?',
-          },
-          {
-            type: 'open',
-            question: 'Opisz w dwóch zdaniach czym jest OWASP Juice Shop:',
-          },
-          {
-            type: 'open',
-            question: 'Wymień co najmniej dwa ryzyka projektowe:',
-          },
-          {
-            type: 'open',
-            question:
-              'Aplikacja jest podatna na ataki typu wstrzyknięcia kiedy… Wymień co najmniej 2 przykłady:',
-          },
-          {
-            type: 'multiple',
-            question:
-              'Które zagadnienie z poniższych NIE należy do OWASP Top Ten?',
-            correct_answer: 'Blockchain Exploits',
+              'Na podstawie kodu z MyService, które ze stwierdzeń jest prawdziwe?',
+            correct_answer: 'Kod się nie skompiluje.',
             incorrect_answers: [
-              'SQL Injection',
-              'Cross-Site Scripting (XSS)',
-              'Broken Access Control',
+              'Klasa MyRepository powinna zostać oznaczona adnotacją @Component',
+              'Kod się skompiluje, aplikacja będzie działać poprawnie.',
+              'Brakuje adnotacji @InjectBean nad adnotacją @Service',
             ],
           },
           {
             type: 'multiple',
             question:
-              'Które stwierdzenie dotyczące ryzyka projektowego jest niepoprawne:',
-            correct_answer: 'Ryzyko projektowe można całkowicie wyeliminować.',
-            incorrect_answers: [
-              'Problemy techniczne, organizacyjne i związane z dostawcami to przykłady ryzyk projektowych.',
-              'Ryzyko projektowe może być minimalizowane poprzez regularną analizę i ocenę potencjalnych zagrożeń.',
-              'Planowanie działań łagodzących ryzyko jest kluczowe dla zwiększenia szans na sukces projektu.',
-            ],
+              'Która z poniższych adnotacji w Springu służy do oznaczenia klas odpowiedzialnych za przetwarzanie żądań HTTP?',
+            correct_answer: '@RestController',
+            incorrect_answers: ['@Repository', '@Service', '@Rest'],
           },
           {
             type: 'multiple',
-            question: 'Które z poniższych produktów nie jest projektem OWASP',
-            correct_answer: 'Splunk',
-            incorrect_answers: [
-              'JuiceShop',
-              'Dependency Track',
-              'OWASP Top Ten',
-            ],
-          },
-          {
-            type: 'multiple',
-            question: 'Wybierz z poniższych ryzyko projektowe:',
-            correct_answer: 'problemy natury politycznej',
-            incorrect_answers: [
-              'błędy w kodzie struktury sterowania pętlą',
-              'niewykonywanie zakładanych funkcji oprogramowania zgodnie z potrzebami',
-              'niepoprawne wykonywanie konkretnych obliczeń w niektórych okolicznościach',
-            ],
-          },
-          {
-            type: 'multiple',
-            question: 'Co oznacza skrót OWASP?',
-            correct_answer: 'Open Worldwide Application Security Project',
-            incorrect_answers: [
-              'Open Web Application Security Program',
-              'Online Web Application System Protocol',
-              'Open Worldwide Application Security Plan',
-            ],
-          },
-          {
-            type: 'open',
-            question: 'Czym są skrypty cross-site?',
-          },
-          {
-            type: 'open',
-            question: 'Czym jest HTML injection?',
-          },
-          {
-            type: 'multiple',
-            question:
-              'Co to jest luka w zabezpieczeniach Cross-Site Scripting (XSS)?',
+            question: 'Która z poniższych funkcji NIE jest cechą Spring Boot?',
             correct_answer:
-              'Wstrzyknięcie kodu, który jest wykonywany po stronie przeglądarki użytkownika.',
+              'Wymaga manualnej konfiguracji wszystkich komponentów przed uruchomieniem aplikacji',
             incorrect_answers: [
-              'Błąd umożliwiający przekierowanie użytkownika na złośliwą stronę.',
-              'Luka umożliwiająca wyciek danych uwierzytelniających.',
-              'Mechanizm kontroli dostępu między domenami.',
-            ],
-          },
-          {
-            type: 'true_false',
-            question:
-              'Luka XSSI umożliwia atakującemu wykradanie wrażliwych danych poprzez wykorzystanie JavaScriptu po stronie klienta do odczytu poufnych informacji z uwierzytelnionych sesji.',
-            correct_answer: 'True',
-          },
-          {
-            type: 'true_false',
-            question:
-              'Magazyn lokalny, pamięć sesji, IndexedDB, Web SQL (przestarzałe), pliki cookie to mechanizmy przechowywania danych udostępniane deweloperom przez przeglądarki do przechowywania danych po stronie klienta.',
-            correct_answer: 'True',
-          },
-          {
-            type: 'true_false',
-            question:
-              'Clickjacking to złośliwa technika, w której użytkownik sieci jest oszukiwany w celu interakcji (w większości przypadków poprzez kliknięcie) z czymś innym niż to, z czym użytkownik uważa, że wchodzi w interakcję.',
-            correct_answer: 'True',
-          },
-          {
-            type: 'multiple',
-            question:
-              'Który mechanizm umożliwia komunikację między różnymi domenami w bezpieczny sposób?',
-            correct_answer: 'Cross Document Messaging',
-            incorrect_answers: ['WebSockets', 'Clickjacking', 'IndexedDB'],
-          },
-          {
-            type: 'open',
-            question: 'Jakie są podstawowe zasady działania mechanizmu CORS?',
-          },
-          {
-            type: 'open',
-            question: 'Co to jest luka CSS injection?',
-          },
-          {
-            type: 'open',
-            question: 'Czym jest manipulacja zasobami po stronie klienta?',
-          },
-          {
-            type: 'open',
-            question:
-              'Jakie mechanizmy filtrowania danych powinny być zastosowane w aplikacjach webowych, aby zapobiegać atakom typu SQL Injection i XSS?',
-          },
-          {
-            type: 'open',
-            question:
-              "Co to jest 'clickjacking'? Podaj definicję (i przykład).",
-          },
-          {
-            type: 'open',
-            question: 'Jak można zapobiec SQL Injection (wstrzyknięcie SQL)?',
-          },
-          {
-            type: 'open',
-            question:
-              'Jakie są podstawowe mechanizmy zapobiegania atakom typu XSS (Cross-Site Scripting) w aplikacjach internetowych?',
-          },
-          {
-            type: 'multiple',
-            question: 'Czym są testy penetracyjne:',
-            correct_answer: 'Testy bezpieczeństwa',
-            incorrect_answers: [
-              'Testy ciążowe',
-              'Testy na ojcostwo',
-              'Testy obciążeniowe',
-            ],
-          },
-          {
-            type: 'open',
-            question: 'Jak zabezpieczyć się przed zdalnym wykonywaniem kodu?',
-          },
-          {
-            type: 'open',
-            question:
-              'Na czym polega Encja zewnętrzna XML (ang. XLM External Entity)?',
-          },
-          {
-            type: 'multiple',
-            question: 'Co to jest wstrzyknięcie SQL (SQL Injection)?',
-            correct_answer:
-              'Wykonanie nieautoryzowanych poleceń w bazie danych.',
-            incorrect_answers: [
-              'Zainstalowanie wirusa na serwerze.',
-              'Zmiana haseł użytkowników.',
-              'Przechwycenie danych w sieci.',
-            ],
-          },
-          {
-            type: 'multiple',
-            question:
-              'Co najlepiej opisuje sytuację wyścigu (ang. race condition)?',
-            correct_answer:
-              'Gdy kolejność wykonania współbieżnych sekcji kodu jest nieprzewidywalna, co prowadzi do błędów.',
-            incorrect_answers: [
-              'Gdy dwie sekcje kodu są wykonywane w kolejności z góry ustalonej przez programistę.',
-              'Gdy dwie sekcje kodu działają zawsze poprawnie bez względu na ich kolejność wykonania.',
-              'Gdy wszystkie wątki są zsynchronizowane i korzystają z tych samych zasobów w określonym czasie.',
-            ],
-          },
-          {
-            type: 'multiple',
-            question:
-              'Single Sign-On (SSO) - mechanizm wielokrotnego logowania, zaznacz które z wymienionych nie jest metodą jego implementacji:',
-            correct_answer: 'Logme-in',
-            incorrect_answers: [
-              'SAML',
-              'OAuth',
-              'Współdzielenie plików cookie',
-            ],
-          },
-          {
-            type: 'multiple',
-            question:
-              'Która z poniższych metod nie należy do standardowych mechanizmów 2FA?',
-            correct_answer: 'Weryfikacja za pomocą CAPTCHA',
-            incorrect_answers: [
-              'Kod generowany przez aplikację uwierzytelniającą',
-              'Klucz sprzętowy (np. YubiKey)',
-              'Kod SMS wysyłany na telefon',
+              'Umożliwia szybkie tworzenie aplikacji gotowych do szybkiego uruchomienia z wykorzystaniem Springa',
+              'Posiada wbudowany serwer i inne niezbędne komponenty',
+              'Automatyczna konfiguracja - do uruchomienia zasadniczej aplikacji nie jest wymagana żadna dodatkowa konfiguracja',
             ],
           },
         ],
@@ -525,9 +242,9 @@
 
         const question = quizData.questions[currentQuestionIndex];
         let questionHTML = `
-            <div class="question">
-              <h2>${question.question}</h2>
-          `;
+                  <div class="question">
+                    <h2>${question.question}</h2>
+                `;
 
         if (question.type === 'multiple') {
           const allAnswers = [
@@ -536,34 +253,34 @@
           ];
           const shuffledAnswers = shuffleArray(allAnswers);
           questionHTML += `
-              <div class="options">
-                ${shuffledAnswers
-                  .map(
-                    (answer) => `
-                  <button onclick="checkAnswer('${answer}')">${answer}</button>
-                `
-                  )
-                  .join('')}
-              </div>
-            `;
+                    <div class="options">
+                      ${shuffledAnswers
+                        .map(
+                          (answer) => `
+                        <button onclick="checkAnswer('${answer}')">${answer}</button>
+                      `
+                        )
+                        .join('')}
+                    </div>
+                  `;
         } else if (question.type === 'true_false') {
           questionHTML += `
-              <div class="options">
-                <button onclick="checkAnswer('True')">True</button>
-                <button onclick="checkAnswer('False')">False</button>
-              </div>
-            `;
+                    <div class="options">
+                      <button onclick="checkAnswer('True')">True</button>
+                      <button onclick="checkAnswer('False')">False</button>
+                    </div>
+                  `;
         } else if (question.type === 'open') {
           questionHTML += `
-              <textarea id="open-answer"></textarea><br>
-              <button onclick="submitOpenAnswer()">Submit</button>
-            `;
+                    <textarea id="open-answer"></textarea><br>
+                    <button onclick="submitOpenAnswer()">Submit</button>
+                  `;
         }
 
         questionHTML += `
-            <div class="feedback"></div>
-          </div>
-          `;
+                  <div class="feedback"></div>
+                </div>
+                `;
 
         quizContainer.innerHTML = questionHTML;
         nextButton.style.display = 'none';
@@ -596,7 +313,17 @@
 
       function submitOpenAnswer() {
         const answer = document.getElementById('open-answer').value;
+        const question = quizData.questions[currentQuestionIndex];
+        const feedbackElement = document.querySelector('.feedback');
+
         answerMap.set(currentQuestionIndex, answer);
+
+        feedbackElement.innerHTML = `
+          <p><strong>Your answer:</strong> ${answer}</p>
+          <p><strong>Sample answer:</strong> ${question.sample_answer}</p>
+        `;
+        feedbackElement.style.display = 'block';
+
         nextButton.style.display = 'block';
         saveProgress();
       }
@@ -614,19 +341,22 @@
         quizData.questions.forEach((question, index) => {
           const answer = answerMap.get(index);
           summaryHTML += `
-              <p>
-                <strong>Q${index + 1}:</strong> ${question.question}<br>
-            `;
+            <p>
+              <strong>Q${index + 1}:</strong> ${question.question}<br>
+          `;
 
           if (question.type === 'open') {
-            summaryHTML += `<strong>Your Answer:</strong> ${answer}`;
+            summaryHTML += `
+              <strong>Your Answer:</strong> ${answer}<br>
+              <strong>Sample Answer:</strong> ${question.sample_answer}
+            `;
           } else {
             summaryHTML += `
-                <span class="${answer === true ? 'correct' : 'incorrect'}">
-                  ${answer === true ? 'Correct' : 'Incorrect'}
-                </span><br>
-                <strong>Correct Answer:</strong> ${question.correct_answer}
-              `;
+              <span class="${answer === true ? 'correct' : 'incorrect'}">
+                ${answer === true ? 'Correct' : 'Incorrect'}
+              </span><br>
+              <strong>Correct Answer:</strong> ${question.correct_answer}
+            `;
           }
 
           summaryHTML += `</p>`;
