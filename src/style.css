@@ -222,6 +222,7 @@ a {
 .arrow {
   display: inline-block;
   animation: bounce 2s ease-in-out infinite;
+  -webkit-text-fill-color: var(--color-accent-blue-start);
 }
 
 @keyframes bounce {
@@ -666,6 +667,23 @@ a {
   margin-top: auto;
   padding-top: var(--space-sm);
   display: inline-block;
+  position: relative;
+  width: fit-content;
+}
+
+.mosaic-card-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-accent-blue-start), var(--color-accent-blue-end));
+  transition: width var(--transition-normal);
+}
+
+.mosaic-card-link:hover::after {
+  width: 100%;
 }
 
 /* Large card - left column spanning both rows */

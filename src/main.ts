@@ -1,5 +1,8 @@
 import './style.css';
 
+// Reveal body once CSS is loaded
+document.body.classList.add('loaded');
+
 // ==========================================================================
 // Hero Animation System
 // ==========================================================================
