@@ -3,118 +3,199 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/assets/favicon-e81dc9d5.ico" type="image/x-icon" />
-    <title>sbfd.me</title>
-    <script type="module" crossorigin src="/assets/index-bcf2a1e4.js"></script>
-    <link rel="stylesheet" href="/assets/index-c087d903.css">
+    <meta name="description" content="Sebastian Fudalej - Backend Engineer with DevOps background, specializing in Node.js. Based in Wrocław, Poland." />
+    <link rel="icon" href="/assets/favicon-KUF3Yij_.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Sebastian Fudalej — Backend Engineer</title>
+    <style>
+      /* Critical CSS to prevent FOUC */
+      body { background: #050510; color: #f5f5f7; opacity: 0; transition: opacity 0.2s; }
+      body.loaded { opacity: 1; }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DALUtuUn.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-ZGnb-xCs.css">
   </head>
 
   <body>
-    <div id="app" class="bg-animate">
-      <div class="h-screen flex items-center pl-[10%]">
-        <span class="text-white text-big">
-          <div class="w-full fading-text text-active">
-            Hello, I'm <span class="text-animate red">Sebastian</span>
+    <div id="app">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-lines">
+            <div class="hero-line" data-index="0">
+              Hello, I'm <span class="accent-red bright">Sebastian</span>
+            </div>
+            <div class="hero-line" data-index="1">
+              I'm a <span class="accent-red bright">Backend Engineer</span>
+            </div>
+            <div class="hero-line" data-index="2">
+              with <span class="accent-red bright">DevOps</span> experience
+            </div>
+            <div class="hero-line" data-index="3">
+              specializing in <span class="accent-red bright">Node.js</span>
+            </div>
           </div>
-          <div class="w-full fading-text">
-            I'm a <span class="text-animate red">DevOps Engineer</span>
-          </div>
-          <div class="w-full fading-text">
-            and a <span class="text-animate red">Software Developer</span>
-          </div>
-          <div class="w-full fading-text">
-            visit my
-            <span class="text-animate blue"
-              ><a href="https://github.com/sebafudi" target="_blank"
-                >GitHub</a
-              ></span
-            >
-          </div>
-          <div class="w-full fading-text">
-            and
-            <span class="text-animate blue"
-              ><a href="https://www.linkedin.com/in/sebafudi/" target="_blank"
-                >LinkedIn</a
-              ></span
-            >
-          </div>
-          <div class="w-full fading-text">
-            or see my
-            <span class="text-animate blue"
-              ><a href="#projects">Projects</a></span
-            >
-          </div>
-        </span>
-      </div>
-      <div class="w-full" id="projects">
-        <div class="projects-container">
-          <div
-            class="project h-screen flex items-center pl-[10%] w-9/12"
-            id="ygg"
-          >
-            <span class="text-white text-big">
-              <div class="project flex flex-col items-start space-y-4">
-                <h2 class="text-2xl font-bold">the Yggdrasil</h2>
-                <p class="uppercase">
-                  <span class="text-animate red">Multi-Site</span> Home Lab
-                </p>
-                <img
-                  src="/assets/project1-edc9e133.webp"
-                  alt="Project 1 Image"
-                  class="w-full h-64 object-cover"
-                />
-                <div class="technologies">
-                  <h3 class="text-lg max-w-prose">
-                    <span class="font-bold text-sm">Technologies Used:</span>
-                    Proxmox, OPNSense, Linux (Alpine), Kubernetes (K3s cluster,
-                    MetalLB), Packer, Docker, docker-compose, NGINX, pm2, bash,
-                    Ansible, Jenkins, PKI, WireGuard, bind9, Cloduflare,
-                    OPNsense, OpenWrt, Grafana, Proxmox Backup Server, Mailu,
-                    Proxmox Mail Gateway
-                  </h3>
-                </div>
-              </div>
-            </span>
-          </div>
-          <div
-            class="project h-screen flex items-center pl-[10%] w-9/12"
-            id="lydlys"
-          >
-            <span class="text-white text-big">
-              <div class="project flex flex-col items-start space-y-4">
-                <h2 class="text-2xl font-bold">lydlys</h2>
-                <p class="uppercase">
-                  Music Festival at
-                  <span class="text-animate red">Home</span>
-                </p>
-                <img
-                  src="/assets/lydlys-9fdcc6ac.png"
-                  alt="Project 1 Image"
-                  class="w-full h-64 object-cover"
-                />
-                <span class="text-4xl"
-                  >Source on
-                  <span class="text-animate blue text-4xl"
-                    ><a
-                      href="https://github.com/sebafudi/lydlys-controller"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >GitHub</a
-                    ></span
-                  ></span
-                >
-                <div class="technologies">
-                  <h3 class="text-lg max-w-prose">
-                    <span class="font-bold text-sm">Technologies Used:</span>
-                    Golang, WLED
-                  </h3>
-                </div>
-              </div>
-            </span>
+
+          <div class="hero-divider"></div>
+
+          <nav class="hero-nav">
+            <a href="https://github.com/sebafudi" target="_blank" rel="noopener noreferrer" class="nav-link accent-blue">GitHub</a>
+            <span class="nav-separator">·</span>
+            <a href="https://www.linkedin.com/in/sebafudi/" target="_blank" rel="noopener noreferrer" class="nav-link accent-blue">LinkedIn</a>
+            <span class="nav-separator">·</span>
+            <a href="#about" class="nav-link accent-blue">About <span class="arrow">↓</span></a>
+          </nav>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="about" id="about">
+        <div class="section-container">
+          <h2 class="section-title">About</h2>
+          <div class="about-content">
+            <p>
+              Backend Engineer based in Wrocław with nearly two years of DevOps and SecOps experience. Currently finishing my Master's in Cybersecurity while building Node.js applications professionally.
+            </p>
+            <p>
+              I started in web development, hit the same pain points every developer knows, and moved into DevOps to fix them. Now I'm back writing code — but with a solid understanding of what happens after the commit. I like reliable systems, clean automation, and the many smart devices running in my apartment.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section class="skills">
+        <div class="section-container">
+          <h2 class="section-title">Tech Stack</h2>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3 class="skill-category-title">Backend</h3>
+              <ul class="skill-list">
+                <li>Node.js</li>
+                <li>TypeScript</li>
+                <li>Express / Fastify</li>
+                <li>PostgreSQL</li>
+                <li>Redis</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <h3 class="skill-category-title">DevOps</h3>
+              <ul class="skill-list">
+                <li>Docker</li>
+                <li>Kubernetes</li>
+                <li>Ansible</li>
+                <li>Jenkins / CI/CD</li>
+                <li>Linux</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <h3 class="skill-category-title">Infrastructure</h3>
+              <ul class="skill-list">
+                <li>Proxmox</li>
+                <li>WireGuard</li>
+                <li>Nginx</li>
+                <li>Grafana</li>
+                <li>Home Assistant</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Project Section -->
+      <section class="projects-featured" id="projects">
+        <div class="section-container">
+          <h2 class="section-title">Featured Project</h2>
+
+          <article class="featured-project">
+            <div class="project-header">
+              <h3 class="project-name">the Yggdrasil</h3>
+              <p class="project-tagline">Multi-Site <span class="accent-red">Home Lab</span></p>
+            </div>
+            <div class="project-description">
+              <p>A comprehensive multi-site infrastructure running virtualization, container orchestration, networking, and self-hosted services across multiple physical locations connected via encrypted tunnels.</p>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">Proxmox</span>
+              <span class="tech-tag">Kubernetes</span>
+              <span class="tech-tag">Ansible</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">WireGuard</span>
+              <span class="tech-tag">OPNsense</span>
+              <span class="tech-tag">Grafana</span>
+              <span class="tech-tag">Jenkins</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Other Projects Section -->
+      <section class="projects-other" id="other-projects">
+        <div class="section-container">
+          <h2 class="section-title">Other Projects</h2>
+
+          <div class="projects-mosaic">
+            <article class="mosaic-card mosaic-card--large">
+              <div class="mosaic-card-content">
+                <span class="mosaic-card-number">01</span>
+                <h3 class="mosaic-card-name">lydlys</h3>
+                <p class="mosaic-card-tagline">Music Festival at <span class="accent-red">Home</span></p>
+                <p class="mosaic-card-description">Timeline-based editor for creating lighting effects synced to music. Place effects on a timeline, hit play, and watch them come alive on WLED LED strips.</p>
+                <div class="mosaic-card-tech">
+                  <span class="tech-tag-small">Golang</span>
+                  <span class="tech-tag-small">WLED</span>
+                </div>
+                <a href="https://github.com/sebafudi/lydlys-controller" target="_blank" rel="noopener noreferrer" class="mosaic-card-link accent-blue">View on GitHub →</a>
+              </div>
+              <div class="mosaic-card-accent"></div>
+            </article>
+
+            <article class="mosaic-card mosaic-card--medium">
+              <div class="mosaic-card-content">
+                <span class="mosaic-card-number">02</span>
+                <h3 class="mosaic-card-name">Smart Home</h3>
+                <p class="mosaic-card-tagline"><span class="accent-red">Many</span> Smart Devices</p>
+                <p class="mosaic-card-description">Comprehensive home automation system managing lighting, climate, security, and energy monitoring.</p>
+                <div class="mosaic-card-tech">
+                  <span class="tech-tag-small">Home Assistant</span>
+                  <span class="tech-tag-small">Zigbee</span>
+                  <span class="tech-tag-small">ESPHome</span>
+                </div>
+              </div>
+              <div class="mosaic-card-accent"></div>
+            </article>
+
+            <article class="mosaic-card mosaic-card--small">
+              <div class="mosaic-card-content">
+                <span class="mosaic-card-number">03</span>
+                <h3 class="mosaic-card-name">This Portfolio</h3>
+                <p class="mosaic-card-tagline">Clean & <span class="accent-red">Fast</span></p>
+                <p class="mosaic-card-description">Minimal portfolio built with TypeScript and TailwindCSS. Fast, simple, no heavy dependencies.</p>
+                <div class="mosaic-card-tech">
+                  <span class="tech-tag-small">TypeScript</span>
+                  <span class="tech-tag-small">Vite</span>
+                  <span class="tech-tag-small">TailwindCSS</span>
+                </div>
+                <a href="https://github.com/sebafudi/sebafudi.github.io" target="_blank" rel="noopener noreferrer" class="mosaic-card-link accent-blue">View on GitHub →</a>
+              </div>
+              <div class="mosaic-card-accent"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <span class="footer-name">Sebastian Fudalej</span>
+          <nav class="footer-links">
+            <a href="https://github.com/sebafudi" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+            <a href="https://www.linkedin.com/in/sebafudi/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          </nav>
+        </div>
+      </footer>
     </div>
-    
   </body>
 </html>
