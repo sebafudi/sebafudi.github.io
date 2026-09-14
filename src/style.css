@@ -1024,3 +1024,9 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+.aws-services {
+  display: block;
+  font-size: 0.875em;
+  line-height: 1.6;
+}
