@@ -88,7 +88,7 @@ document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) =>
   });
 });
 
-document.querySelectorAll<HTMLElement>('.featured-project, .mosaic-card, .skill-category, .ai-work-item').forEach((card) => {
+document.querySelectorAll<HTMLElement>('.featured-project, .mosaic-card, .skill-category, .ai-work-item, .experience-item').forEach((card) => {
   card.addEventListener('pointermove', (event) => {
     const bounds = card.getBoundingClientRect();
     card.style.setProperty('--mouse-x', `${((event.clientX - bounds.left) / bounds.width) * 100}%`);

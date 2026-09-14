@@ -319,7 +319,8 @@ a {
 }
 
 /* Top accent line */
-.skill-category::before {
+.skill-category::before,
+.experience-item::before {
   content: '';
   position: absolute;
   top: 0;
@@ -332,7 +333,8 @@ a {
 }
 
 /* Mouse-tracking glow */
-.skill-category::after {
+.skill-category::after,
+.experience-item::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -342,17 +344,20 @@ a {
   transition: opacity var(--transition-normal);
 }
 
-.skill-category:hover {
+.skill-category:hover,
+.experience-item:hover {
   border-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(232, 23, 93, 0.08);
 }
 
-.skill-category:hover::before {
+.skill-category:hover::before,
+.experience-item:hover::before {
   opacity: 1;
 }
 
-.skill-category:hover::after {
+.skill-category:hover::after,
+.experience-item:hover::after {
   opacity: 1;
 }
 
@@ -1029,4 +1034,10 @@ a {
   display: block;
   font-size: 0.875em;
   line-height: 1.6;
+}
+
+.experience-item {
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
 }
