@@ -303,7 +303,7 @@ a {
 
 @media (min-width: 640px) {
   .skills-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-lg);
   }
 }
@@ -712,6 +712,192 @@ a {
 /* Small card - bottom right */
 .mosaic-card--small .mosaic-card-content {
   padding: var(--space-lg);
+}
+
+/* ===========================================================================
+   Career, AI, Hackathons, Education and Contact
+   =========================================================================== */
+
+.experience,
+.education {
+  background: var(--color-bg-secondary);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ai-work,
+.hackathons,
+.contact {
+  background: var(--color-bg-primary);
+}
+
+.experience-list,
+.education-list {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.experience-item,
+.education-list article,
+.ai-work-item {
+  padding: var(--space-lg);
+  background: var(--color-bg-tertiary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.experience-item {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.experience-heading h3,
+.education-list h3,
+.ai-work-item h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.experience-meta {
+  margin: var(--space-xs) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.experience-item > p,
+.education-list article > p:not(.experience-meta),
+.ai-work-item p,
+.hackathons-content p,
+.contact-content > p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+.experience-item--compact {
+  background: transparent;
+}
+
+.ai-work-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.ai-work-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-work-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.07), transparent 55%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.ai-work-item:hover::after {
+  opacity: 1;
+}
+
+.ai-work-item h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.hackathons-content {
+  display: grid;
+  gap: var(--space-md);
+  max-width: 70ch;
+}
+
+.hackathons-highlight {
+  color: var(--color-text-primary) !important;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+}
+
+.education-list article {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.contact {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-content {
+  padding-bottom: calc(var(--space-3xl) + var(--space-lg));
+}
+
+.contact-email {
+  display: inline-block;
+  width: fit-content;
+  margin-top: var(--space-md);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .ai-work-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .experience-item {
+    grid-template-columns: minmax(13rem, 0.65fr) 1.35fr;
+    align-items: start;
+  }
+
+  .experience-item > p {
+    grid-column: 2;
+  }
+
+  .education-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* The original three-card mosaic becomes a dense, forgiving project grid. */
+@media (min-width: 768px) {
+  .projects-mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+
+  .mosaic-card--large,
+  .mosaic-card--medium,
+  .mosaic-card--small,
+  .mosaic-card--wide {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .projects-mosaic .mosaic-card:first-child,
+  .mosaic-card--wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .mosaic-card-content,
+  .mosaic-card--large .mosaic-card-content,
+  .mosaic-card--medium .mosaic-card-content,
+  .mosaic-card--small .mosaic-card-content {
+    padding: var(--space-md);
+  }
+
+  .mosaic-card-tech,
+  .project-tech {
+    gap: 6px;
+  }
+
+  .tech-tag-small,
+  .tech-tag {
+    overflow-wrap: anywhere;
+  }
 }
 
 /* ==========================================================================

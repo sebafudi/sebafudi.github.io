@@ -1,217 +1,111 @@
 import './style.css';
 
-// Reveal body once CSS is loaded
 document.body.classList.add('loaded');
 
-// ==========================================================================
-// Hero Animation System
-// ==========================================================================
-
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const heroLines = document.querySelectorAll<HTMLElement>('.hero-line');
 const heroContent = document.querySelector<HTMLElement>('.hero-content');
 const redAccents = document.querySelectorAll<HTMLElement>('.accent-red');
-
-let cycleInterval: number | null = null;
+let cycleInterval: number | undefined;
 let currentIndex = 0;
-let isUserInteracting = false;
 
-const lineCount = heroLines.length;
-
-// Mouse hover interaction
-heroLines.forEach((line, index) => {
-  line.addEventListener('mouseenter', () => {
-    isUserInteracting = true;
-    stopCycling();
-    heroLines.forEach((l) => l.classList.remove('active'));
-    line.classList.add('active');
-    currentIndex = index;
-  });
-});
-
-if (heroContent) {
-  heroContent.addEventListener('mouseleave', () => {
-    isUserInteracting = false;
-    startCycling();
-  });
-}
-
-// Cycling through lines
-function startCycling() {
-  if (cycleInterval) return;
-
-  cycleInterval = window.setInterval(() => {
-    if (isUserInteracting) return;
-
-    currentIndex = (currentIndex + 1) % lineCount;
-    heroLines.forEach((l) => l.classList.remove('active'));
-    heroLines[currentIndex].classList.add('active');
-  }, 2000);
+function activateLine(index: number) {
+  heroLines.forEach((line, lineIndex) => line.classList.toggle('active', lineIndex === index));
+  currentIndex = index;
 }
 
 function stopCycling() {
-  if (cycleInterval) {
-    clearInterval(cycleInterval);
-    cycleInterval = null;
+  if (cycleInterval !== undefined) window.clearInterval(cycleInterval);
+  cycleInterval = undefined;
+}
+
+function startCycling() {
+  if (prefersReducedMotion || cycleInterval !== undefined || heroLines.length === 0) return;
+  cycleInterval = window.setInterval(() => activateLine((currentIndex + 1) % heroLines.length), 2400);
+}
+
+if (heroLines.length) {
+  activateLine(0);
+  if (!prefersReducedMotion) {
+    window.setTimeout(() => {
+      redAccents.forEach((accent) => accent.classList.remove('bright'));
+      startCycling();
+    }, 1500);
   }
-}
 
-// ==========================================================================
-// Initial Animation Sequence
-// ==========================================================================
-
-function runIntroAnimation() {
-  // First line activates immediately
-  heroLines[0].classList.add('active');
-
-  // Fade red brightness after short delay, then start cycling
-  setTimeout(() => {
-    redAccents.forEach((accent) => {
-      accent.classList.remove('bright');
+  heroLines.forEach((line, index) => {
+    line.addEventListener('mouseenter', () => {
+      stopCycling();
+      activateLine(index);
     });
-    // Start cycling after glow fades
-    startCycling();
-  }, 1500);
+    line.setAttribute('tabindex', '0');
+    line.setAttribute('role', 'button');
+    line.addEventListener('focus', () => {
+      stopCycling();
+      activateLine(index);
+    });
+    line.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowRight' && event.key !== 'ArrowUp' && event.key !== 'ArrowLeft') return;
+      event.preventDefault();
+      const direction = event.key === 'ArrowDown' || event.key === 'ArrowRight' ? 1 : -1;
+      heroLines[(index + direction + heroLines.length) % heroLines.length]?.focus();
+    });
+  });
+  heroContent?.addEventListener('mouseleave', startCycling);
+  heroContent?.addEventListener('focusout', (event) => {
+    if (!heroContent.contains(event.relatedTarget as Node | null)) startCycling();
+  });
 }
 
-// Start intro immediately
-runIntroAnimation();
-
-// ==========================================================================
-// Intersection Observer for fade-in sections
-// ==========================================================================
-
-const observerOptions: IntersectionObserverInit = {
-  root: null,
-  rootMargin: '0px 0px -50px 0px',
-  threshold: 0.1,
-};
-
-const fadeInObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
+const observer = new IntersectionObserver(
+  (entries) => entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      fadeInObserver.unobserve(entry.target);
+      observer.unobserve(entry.target);
     }
-  });
-}, observerOptions);
-
-const sections = document.querySelectorAll<HTMLElement>(
-  '.about, .skills, .projects-featured, .projects-other, .footer'
+  }),
+  { rootMargin: '0px 0px -8% 0px', threshold: 0.01 }
 );
 
-sections.forEach((section) => {
-  section.classList.add('fade-in-section');
-  fadeInObserver.observe(section);
+document.querySelectorAll<HTMLElement>(
+  '.about, .experience, .ai-work, .hackathons, .skills, .projects-featured, .projects-other, .education, .contact, .footer'
+).forEach((section) => {
+  if (prefersReducedMotion) {
+    section.classList.add('visible');
+  } else {
+    section.classList.add('fade-in-section');
+    observer.observe(section);
+  }
 });
-
-// ==========================================================================
-// Smooth scroll for anchor links
-// ==========================================================================
 
 document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = anchor.getAttribute('href');
-    if (targetId && targetId !== '#') {
-      const target = document.querySelector(targetId);
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
-    }
+  anchor.addEventListener('click', (event) => {
+    const href = anchor.getAttribute('href');
+    const target = href ? document.querySelector(href) : null;
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
   });
 });
 
-// ==========================================================================
-// Mouse tracking for featured project glow effect
-// ==========================================================================
-
-const featuredProject = document.querySelector<HTMLElement>('.featured-project');
-if (featuredProject) {
-  featuredProject.addEventListener('mousemove', (e) => {
-    const rect = featuredProject.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    featuredProject.style.setProperty('--mouse-x', `${x}%`);
-    featuredProject.style.setProperty('--mouse-y', `${y}%`);
-  });
-}
-
-// Mouse tracking for mosaic cards and skill categories
-const glowCards = document.querySelectorAll<HTMLElement>('.mosaic-card, .skill-category');
-glowCards.forEach((card) => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    card.style.setProperty('--mouse-x', `${x}%`);
-    card.style.setProperty('--mouse-y', `${y}%`);
+document.querySelectorAll<HTMLElement>('.featured-project, .mosaic-card, .skill-category, .ai-work-item').forEach((card) => {
+  card.addEventListener('pointermove', (event) => {
+    const bounds = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${((event.clientX - bounds.left) / bounds.width) * 100}%`);
+    card.style.setProperty('--mouse-y', `${((event.clientY - bounds.top) / bounds.height) * 100}%`);
   });
 });
-
-// ==========================================================================
-// Subtle parallax on hero (respects reduced motion)
-// ==========================================================================
-
-const prefersReducedMotion = window.matchMedia(
-  '(prefers-reduced-motion: reduce)'
-).matches;
 
 if (!prefersReducedMotion) {
-  let ticking = false;
-
-  const updateParallax = () => {
-    const scrolled = window.scrollY;
-    const hero = document.querySelector<HTMLElement>('.hero');
-
-    if (hero && scrolled < window.innerHeight) {
-      const opacity = Math.max(0, 1 - scrolled / (window.innerHeight * 0.8));
-      hero.style.opacity = opacity.toString();
-    }
-
-    ticking = false;
-  };
+  let parallaxQueued = false;
+  const hero = document.querySelector<HTMLElement>('.hero');
 
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
-  });
+    if (parallaxQueued || !hero || window.scrollY >= window.innerHeight) return;
+    parallaxQueued = true;
+    window.requestAnimationFrame(() => {
+      hero.style.opacity = String(Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.8)));
+      parallaxQueued = false;
+    });
+  }, { passive: true });
 }
-
-// ==========================================================================
-// Keyboard navigation for hero lines
-// ==========================================================================
-
-heroLines.forEach((line, index) => {
-  line.setAttribute('tabindex', '0');
-  line.setAttribute('role', 'button');
-
-  line.addEventListener('focus', () => {
-    isUserInteracting = true;
-    stopCycling();
-    heroLines.forEach((l) => l.classList.remove('active'));
-    line.classList.add('active');
-    currentIndex = index;
-  });
-
-  line.addEventListener('blur', () => {
-    isUserInteracting = false;
-    startCycling();
-  });
-
-  line.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-      e.preventDefault();
-      const nextIndex = (index + 1) % heroLines.length;
-      heroLines[nextIndex]?.focus();
-    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-      e.preventDefault();
-      const prevIndex = (index - 1 + heroLines.length) % heroLines.length;
-      heroLines[prevIndex]?.focus();
-    }
-  });
-});
