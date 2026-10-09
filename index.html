@@ -1,366 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sebastian Fudalej is a backend developer and AI Champion in Wrocław, building payment integrations, developer tools and practical AI workflows." />
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sebastian Fudalej</title>
+<meta name="description" content="Sebastian Fudalej is a backend developer and AI Champion in Wrocław, building payment integrations, developer tools and practical AI workflows.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sbfd.me/">
+<meta property="og:title" content="Sebastian Fudalej">
+<meta property="og:description" content="Backend developer and AI Champion in Wrocław. Payment integrations, developer tools and practical AI workflows.">
+<meta property="og:image" content="https://sbfd.me/og-image.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sebastian Fudalej">
+<meta name="twitter:description" content="Backend developer and AI Champion in Wrocław. Payment integrations, developer tools and practical AI workflows.">
+<meta name="twitter:image" content="https://sbfd.me/og-image.jpeg">
+<meta name="theme-color" content="#1B1E21">
+<style>html { background: #1B1E21; }</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/bricolage-latin.woff2" crossorigin>
+<link rel="preload" as="image" href="/assets/img/cat.webp?v=1">
+</head>
+<body>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sbfd.me/" />
-    <meta property="og:title" content="Sebastian Fudalej | Backend Developer &amp; AI Champion" />
-    <meta property="og:description" content="Backend development, payment integrations, developer tools and practical AI workflows." />
-    <meta property="og:image" content="https://sbfd.me/og-image.jpeg" />
+<header class="bar" data-tone="dark">
+  <a class="wordmark" href="#top" aria-label="Sebastian Fudalej, back to top"><span class="eye" aria-hidden="true"></span>sebastian fudalej</a>
+  <nav aria-label="Sections">
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#stack">Stack</a>
+    <a class="bar-cta" href="#contact">Get in touch</a>
+  </nav>
+</header>
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://sbfd.me/" />
-    <meta name="twitter:title" content="Sebastian Fudalej | Backend Developer &amp; AI Champion" />
-    <meta name="twitter:description" content="Backend development, payment integrations, developer tools and practical AI workflows." />
-    <meta name="twitter:image" content="https://sbfd.me/og-image.jpeg" />
+<main id="top">
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <title>Sebastian Fudalej | Backend Developer &amp; AI Champion</title>
-    <style>
-      /* Critical CSS to prevent FOUC */
-      body { background: #050510; color: #f5f5f7; }
-    </style>
-  </head>
-
-  <body>
-    <div id="app">
-      <!-- Hero Section -->
-      <section class="hero">
-        <div class="hero-content">
-          <div class="hero-lines">
-            <div class="hero-line" data-index="0">
-              Hello, I'm <span class="accent-red bright">Sebastian</span>
-            </div>
-            <div class="hero-line" data-index="1">
-              I'm a <span class="accent-red bright">Backend Developer</span>
-            </div>
-            <div class="hero-line" data-index="2">
-              and an <span class="accent-red bright">AI Champion</span>
-            </div>
-            <div class="hero-line" data-index="3">
-              building with <span class="accent-red bright">Node.js &amp; TypeScript</span>
-            </div>
-          </div>
-
-          <div class="hero-divider"></div>
-
-          <nav class="hero-nav">
-            <a href="https://github.com/sebafudi" target="_blank" rel="noopener noreferrer" class="nav-link accent-blue">GitHub</a>
-            <span class="nav-separator">·</span>
-            <a href="https://www.linkedin.com/in/sebafudi/" target="_blank" rel="noopener noreferrer" class="nav-link accent-blue">LinkedIn</a>
-            <span class="nav-separator">·</span>
-            <a href="#about" class="nav-link accent-blue">About <span class="arrow">↓</span></a>
-          </nav>
-        </div>
-      </section>
-
-      <!-- About Section -->
-      <section class="about" id="about">
-        <div class="section-container">
-          <h2 class="section-title">About</h2>
-          <div class="about-content">
-            <p>
-              I'm a backend developer and AI Champion at MasterBorn in Wrocław. I work on payment integrations and backend systems with Node.js, TypeScript and AWS, and help teammates put AI to practical use.
-            </p>
-            <p>
-              My path through web development and DevOps shaped how I build: I care about reliable delivery, clear boundaries and what happens after the commit. I make developer tools and agent workflows, share what works with my team, and keep experimenting with the smart devices running in my apartment.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills Section -->
-      <section class="skills">
-        <div class="section-container">
-          <h2 class="section-title">Tech Stack</h2>
-          <div class="skills-grid">
-            <div class="skill-category">
-              <h3 class="skill-category-title">Backend</h3>
-              <ul class="skill-list">
-                <li>Node.js</li>
-                <li>TypeScript</li>
-                <li>Fastify</li>
-                <li>Express</li>
-                <li>PostgreSQL</li>
-                <li>Redis</li>
-                <li>REST APIs</li>
-              </ul>
-            </div>
-            <div class="skill-category">
-              <h3 class="skill-category-title">AI &amp; Developer Tools</h3>
-              <ul class="skill-list">
-                <li>Codex</li>
-                <li>Claude Code</li>
-                <li>Agent workflows</li>
-                <li>Skills</li>
-                <li>Plugins</li>
-                <li>Hooks</li>
-                <li>AI-assisted review</li>
-                <li>Knowledge sharing</li>
-              </ul>
-            </div>
-            <div class="skill-category">
-              <h3 class="skill-category-title">Cloud &amp; Delivery</h3>
-              <ul class="skill-list">
-                <li><strong>AWS</strong><br><span class="aws-services">Lambda, API Gateway, SQS, SNS, EventBridge</span></li>
-                <li>Docker</li>
-                <li>GitHub Actions</li>
-                <li>CI/CD</li>
-                <li>Kubernetes</li>
-                <li>Ansible</li>
-                <li>GCP</li>
-                <li>Jenkins</li>
-              </ul>
-            </div>
-            <div class="skill-category">
-              <h3 class="skill-category-title">Infrastructure</h3>
-              <ul class="skill-list">
-                <li>Linux</li>
-                <li>Proxmox</li>
-                <li>WireGuard</li>
-                <li>Nginx</li>
-                <li>Grafana</li>
-                <li>Home Assistant</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="experience" id="experience">
-        <div class="section-container">
-          <h2 class="section-title">Experience</h2>
-          <div class="experience-list">
-            <article class="experience-item">
-              <div class="experience-meta">Jul 2025 - present · Promoted Apr 2026</div>
-              <h3>Backend Developer · MasterBorn</h3>
-              <p>Share responsibility for the payments API of an accounting and tax platform. Lead the backend integration with a new payment provider for card and ACH payments, working directly with the vendor. Delivered partial payments, incremental changes to a legacy payments service and diagnostics for webhook latency. Earlier work included Shopify checkout integrations and an internal feedback application.</p>
-            </article>
-            <article class="experience-item">
-              <div class="experience-meta">Sep 2024 - Jul 2025</div>
-              <h3>Junior DevOps/SecOps Engineer · Zebra Technologies</h3>
-              <p>Maintained CI pipelines for Linux-based images for custom hardware and managed machines used for computer vision training. Worked with GitHub Actions, Docker/Swarm, Linux, GCP, Azure and Ansible.</p>
-            </article>
-            <article class="experience-item">
-              <div class="experience-meta">May 2024 - Nov 2024</div>
-              <h3>DevOps Engineer Intern · Grid Dynamics</h3>
-              <p>Completed a structured DevOps learning path.</p>
-            </article>
-            <article class="experience-item">
-              <div class="experience-meta">Dec 2023 - May 2024</div>
-              <h3>DevOps Engineer · SlickCloud</h3>
-              <p>Resolved CI/CD and environment issues with Kubernetes, Jenkins, Docker and Red Hat Enterprise Linux.</p>
-            </article>
-            <article class="experience-item">
-              <div class="experience-meta">May 2022 - Mar 2023 · Part-time</div>
-              <h3>NodeJS Developer · Clavo</h3>
-              <p>Built a Slack integration for timesheet changes and employee availability, alongside Node.js, Express, Parse Server and MongoDB features and fixes.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="ai-work" id="ai-work">
-        <div class="section-container">
-          <h2 class="section-title">AI in Practice</h2>
-          <div class="about-content">
-            <p>As an AI Champion at MasterBorn, I create reusable plugins, document working practices and share agent workflows with teammates. I designed and built Autodev with AI: a Claude Code workflow that moves from requirements and Jira planning through implementation and pull requests, with human approval gates.</p>
-            <p>I also developed AI-assisted code review with independent verification of findings. My focus is developer tooling that helps people make better decisions and deliver reliable software.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Featured Project Section -->
-      <section class="projects-featured" id="projects">
-        <div class="section-container">
-          <h2 class="section-title">Featured Project</h2>
-
-          <article class="featured-project">
-            <div class="project-header">
-              <h3 class="project-name">the Yggdrasil</h3>
-              <p class="project-tagline">Multi-Site <span class="accent-red">Home Lab</span></p>
-            </div>
-            <div class="project-description">
-              <p>A three-location home infrastructure connected by VPN, hosting services and automated builds with virtual machines and containers. A practical space for experimenting with networking, automation and reliable operations.</p>
-            </div>
-            <div class="project-tech">
-              <span class="tech-tag">Proxmox</span>
-              <span class="tech-tag">Kubernetes</span>
-              <span class="tech-tag">Ansible</span>
-              <span class="tech-tag">Docker</span>
-              <span class="tech-tag">WireGuard</span>
-              <span class="tech-tag">OPNsense</span>
-              <span class="tech-tag">Grafana</span>
-              <span class="tech-tag">Jenkins</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- Other Projects Section -->
-      <section class="projects-other" id="other-projects">
-        <div class="section-container">
-          <h2 class="section-title">Projects &amp; Experiments</h2>
-
-          <div class="projects-mosaic">
-            <article class="mosaic-card mosaic-card--large">
-              <div class="mosaic-card-content">
-                <span class="mosaic-card-number">01</span>
-                <h3 class="mosaic-card-name">Daystride</h3>
-                <p class="mosaic-card-tagline">Connected <span class="accent-red">Treadmill</span> Dashboard</p>
-                <p class="mosaic-card-description">A treadmill and Apple Watch dashboard with workout history and activity analysis. Developed primarily with Codex, alongside Claude Code, with device-state handling validated on real hardware and a deployed Workers/D1 backend.</p>
-                <div class="mosaic-card-tech"><span class="tech-tag-small">Cloudflare Workers</span><span class="tech-tag-small">D1</span><span class="tech-tag-small">Codex</span></div>
-              </div>
-              <div class="mosaic-card-accent"></div>
-            </article>
-
-            <article class="mosaic-card mosaic-card--medium">
-              <div class="mosaic-card-content">
-                <span class="mosaic-card-number">02</span>
-                <h3 class="mosaic-card-name">Aglais</h3>
-                <p class="mosaic-card-tagline">Photography Studio <span class="accent-red">SaaS</span></p>
-                <p class="mosaic-card-description">A deployed full-stack studio management app built with AI assistance and coordinated through defined agent roles, task tracking and review responsibilities.</p>
-                <div class="mosaic-card-tech"><span class="tech-tag-small">Next.js</span><span class="tech-tag-small">Drizzle</span><span class="tech-tag-small">Neon PostgreSQL</span></div>
-              </div>
-              <div class="mosaic-card-accent"></div>
-            </article>
-
-            <article class="mosaic-card mosaic-card--small">
-              <div class="mosaic-card-content">
-                <span class="mosaic-card-number">03</span>
-                <h3 class="mosaic-card-name">AI Developer Tools</h3>
-                <p class="mosaic-card-tagline">A Personal <span class="accent-red">Agent Environment</span></p>
-                <p class="mosaic-card-description">Task-aware terminal titles, an fzf session picker, a local session viewer, and reusable skills and hooks for context across agent sessions.</p>
-                <div class="mosaic-card-tech"><span class="tech-tag-small">Claude Code</span><span class="tech-tag-small">Plugins</span><span class="tech-tag-small">Hooks</span></div>
-              </div>
-              <div class="mosaic-card-accent"></div>
-            </article>
-
-            <article class="mosaic-card mosaic-card--medium">
-              <div class="mosaic-card-content">
-                <span class="mosaic-card-number">04</span>
-                <h3 class="mosaic-card-name">Dynamic Music</h3>
-                <p class="mosaic-card-tagline">Telemetry-driven <span class="accent-red">Audio</span></p>
-                <p class="mosaic-card-description">A desktop experiment that remixes audio stems in response to Forza driving telemetry, with reactive effects and telemetry replay for repeatable tuning.</p>
-                <div class="mosaic-card-tech"><span class="tech-tag-small">TypeScript</span><span class="tech-tag-small">Electron</span><span class="tech-tag-small">Web Audio</span><span class="tech-tag-small">Python</span></div>
-              </div>
-              <div class="mosaic-card-accent"></div>
-            </article>
-
-            <article class="mosaic-card mosaic-card--large">
-              <div class="mosaic-card-content">
-                <span class="mosaic-card-number">05</span>
-                <h3 class="mosaic-card-name">lydlys</h3>
-                <p class="mosaic-card-tagline">Music Festival at <span class="accent-red">Home</span></p>
-                <p class="mosaic-card-description">Evolving prototypes for music-reactive home lighting, with WLED integration and web-based controls for experimenting with synchronization and effects.</p>
-                <div class="mosaic-card-tech">
-                  <span class="tech-tag-small">Go</span>
-                  <span class="tech-tag-small">TypeScript</span>
-                  <span class="tech-tag-small">WLED</span>
-                </div>
-                <a href="https://github.com/sebafudi/lydlys-controller" target="_blank" rel="noopener noreferrer" class="mosaic-card-link accent-blue">View on GitHub →</a>
-              </div>
-              <div class="mosaic-card-accent"></div>
-            </article>
-
-            <article class="mosaic-card mosaic-card--medium">
-              <div class="mosaic-card-content">
-                <span class="mosaic-card-number">06</span>
-                <h3 class="mosaic-card-name">Smart Home</h3>
-                <p class="mosaic-card-tagline"><span class="accent-red">Many</span> Smart Devices</p>
-                <p class="mosaic-card-description">Comprehensive home automation system managing lighting, climate, security, and energy monitoring.</p>
-                <div class="mosaic-card-tech">
-                  <span class="tech-tag-small">Home Assistant</span>
-                  <span class="tech-tag-small">Zigbee</span>
-                  <span class="tech-tag-small">ESPHome</span>
-                </div>
-              </div>
-              <div class="mosaic-card-accent"></div>
-            </article>
-
-            <article class="mosaic-card mosaic-card--small">
-              <div class="mosaic-card-content">
-                <span class="mosaic-card-number">07</span>
-                <h3 class="mosaic-card-name">This Portfolio</h3>
-                <p class="mosaic-card-tagline">Clean & <span class="accent-red">Fast</span></p>
-                <p class="mosaic-card-description">Minimal portfolio built with TypeScript and TailwindCSS. Fast, simple, no heavy dependencies.</p>
-                <div class="mosaic-card-tech">
-                  <span class="tech-tag-small">TypeScript</span>
-                  <span class="tech-tag-small">Vite</span>
-                  <span class="tech-tag-small">TailwindCSS</span>
-                </div>
-                <a href="https://github.com/sebafudi/sebafudi.github.io" target="_blank" rel="noopener noreferrer" class="mosaic-card-link accent-blue">View on GitHub →</a>
-              </div>
-              <div class="mosaic-card-accent"></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="hackathons" id="hackathons">
-        <div class="section-container">
-          <h2 class="section-title">Team Hackathons</h2>
-          <div class="experience-list">
-            <article class="experience-item">
-              <div class="experience-meta">MasterBorn · May 2026 · 2nd of 7 teams · Best Design Award</div>
-              <h3>AI-powered research CRM</h3>
-              <p>Our four-person team built a research CRM prototype using organizer-provided synthetic data. It combined a contact graph and conference briefings with agentic retrieval-augmented generation (RAG) over ChromaDB through MCP tools, using Claude and Vercel AI SDK.</p>
-            </article>
-            <article class="experience-item">
-              <div class="experience-meta">MasterBorn · Internal AI hackathon · 2nd place</div>
-              <h3>Group-trip planning assistant</h3>
-              <p>Our three-person team created an LLM-powered assistant that followed a group conversation and helped participants organize a shared trip. The prototype used Gemini Flash for interactions and Claude Code during development.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="education" id="education">
-        <div class="section-container">
-          <h2 class="section-title">Education</h2>
-          <div class="experience-list">
-            <article class="experience-item">
-              <div class="experience-meta">2024 - 2026 · WSB Merito University in Wrocław</div>
-              <h3>Master's studies · Computer Science / Cybersecurity</h3>
-              <p>Compared LLMs and static analysis tools for Node.js vulnerability detection. Built SecOrchestrator to run evaluations using CVEFixes and OWASP Juice Shop.</p>
-            </article>
-            <article class="experience-item">
-              <div class="experience-meta">2020 - 2024 · Opole University of Technology</div>
-              <h3>Engineer's degree · Computer Engineering</h3>
-              <p>Designed and implemented a DevOps pipeline using GCP, Terraform, Kubernetes and Docker.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="contact" id="contact">
-        <div class="section-container">
-          <h2 class="section-title">Get in touch</h2>
-          <div class="about-content">
-            <p>Interested in backend systems, developer tooling or practical AI workflows? <a href="https://www.linkedin.com/in/sebafudi/" target="_blank" rel="noopener noreferrer" class="accent-blue">Get in touch on LinkedIn</a>.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="footer-content">
-          <span class="footer-name">Sebastian Fudalej</span>
-          <nav class="footer-links">
-            <a href="https://github.com/sebafudi" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
-            <a href="https://www.linkedin.com/in/sebafudi/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
-          </nav>
-        </div>
-      </footer>
+  <section class="hero" data-tone="dark" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 id="hero-title">Sebastian Fudalej</h1>
+      <p>Backend developer and AI Champion in Wrocław, building payment integrations, developer tools and practical AI workflows.</p>
     </div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <div class="hero-cat">
+      <img src="/assets/img/cat.webp?v=1" width="868" height="1350" alt="A brown tabby Maine Coon sitting upright, tail curled around its paws" fetchpriority="high">
+    </div>
+  </section>
+
+  <section class="intro" data-tone="light" aria-label="About">
+    <p class="line">I build payment integrations and backend systems at MasterBorn.</p>
+    <p class="line">Node.js, TypeScript and AWS, mostly.</p>
+    <p class="line">DevOps came first, so I care what happens after the commit.</p>
+    <p class="line">At home, a lab of servers and smart devices keeps me experimenting.</p>
+    <p class="line line-answer">Software that keeps running.</p>
+  </section>
+
+  <section class="work" id="work" data-tone="dark" aria-labelledby="work-title">
+    <h2 id="work-title" class="visually-hidden">Experience</h2>
+    <div class="work-stage">
+      <div class="pin-progress" aria-hidden="true"><span></span></div>
+      <div class="work-art" aria-hidden="true">
+        <img class="work-img" data-job="0" src="/assets/img/job-clock.webp?v=1" width="677" height="1100" alt="">
+        <img class="work-img" data-job="1" src="/assets/img/job-helm.webp?v=1" width="1027" height="1100" alt="">
+        <img class="work-img" data-job="2" src="/assets/img/job-books.webp?v=1" width="1100" height="765" alt="">
+        <img class="work-img" data-job="3" src="/assets/img/job-scanner.webp?v=1" width="780" height="1100" alt="">
+        <img class="work-img" data-job="4" src="/assets/img/job-payments.webp?v=1" width="1034" height="995" alt="">
+      </div>
+      <ol class="jobs">
+        <li class="job" data-job="0">
+          <p class="job-when">May 2022 to March 2023, part-time</p>
+          <h3>Node.js developer at Clavo</h3>
+          <p>A Slack integration for timesheet changes and who is available, plus features and fixes on Express, Parse Server and MongoDB.</p>
+        </li>
+        <li class="job" data-job="1">
+          <p class="job-when">December 2023 to May 2024</p>
+          <h3>DevOps engineer at SlickCloud</h3>
+          <p>Fixed CI/CD and environment problems across Kubernetes, Jenkins, Docker and Red Hat Enterprise Linux.</p>
+        </li>
+        <li class="job" data-job="2">
+          <p class="job-when">May to November 2024</p>
+          <h3>DevOps intern at Grid Dynamics</h3>
+          <p>A structured DevOps learning path, start to finish.</p>
+        </li>
+        <li class="job" data-job="3">
+          <p class="job-when">September 2024 to July 2025</p>
+          <h3>DevOps and SecOps engineer at Zebra Technologies</h3>
+          <p>CI pipelines for Linux images that run on custom hardware, and the machines that train computer vision models. GitHub Actions, Docker Swarm, GCP, Azure and Ansible.</p>
+        </li>
+        <li class="job" data-job="4">
+          <p class="job-when">July 2025 to now, promoted April 2026</p>
+          <h3>Backend developer at MasterBorn</h3>
+          <p>I share the payments API of an accounting and tax platform and lead the integration with a new card and ACH provider, working with the vendor directly. Shipped partial payments, legacy service changes and webhook latency diagnostics.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="ai" data-tone="light" aria-labelledby="ai-title">
+    <div class="ai-copy">
+      <h2 id="ai-title">AI, with a person at every gate.</h2>
+      <p>As AI Champion at MasterBorn I build plugins, write down what works and share agent workflows with the team.</p>
+    </div>
+    <img class="ai-cat" src="/assets/img/cat-robot.webp?v=1" width="1100" height="671" alt="The tabby cat lying down, studying a small tin toy robot" loading="lazy">
+    <div class="autodev">
+      <h3>Autodev</h3>
+      <p>A Claude Code workflow I designed and built. It takes a feature from requirements to a pull request, and waits for a person to approve each step.</p>
+      <ol class="flow" aria-label="Autodev steps">
+        <li>Requirements</li>
+        <li>Jira plan</li>
+        <li>Implementation</li>
+        <li>Pull request</li>
+      </ol>
+    </div>
+    <div class="review">
+      <h3>Code review that checks itself</h3>
+      <p>AI-assisted review where every finding is verified independently before anyone reads it.</p>
+    </div>
+  </section>
+
+  <section class="ygg" data-tone="dark" aria-labelledby="ygg-title">
+    <div class="ygg-copy">
+      <h2 id="ygg-title">Yggdrasil</h2>
+      <p>A home lab across three locations, joined by VPN. Virtual machines, containers and automated builds, run like production.</p>
+      <p class="ygg-tech">Proxmox, Kubernetes, Ansible, Docker, WireGuard, OPNsense, Grafana and Jenkins.</p>
+    </div>
+    <img class="ygg-tree" data-speed="0.08" src="/assets/img/yggdrasil.webp?v=1" width="1106" height="1199" alt="A bonsai tree grown from ethernet cables, rooted in a small server rack" loading="lazy">
+  </section>
+
+  <section class="projects" id="projects" data-tone="light" aria-labelledby="projects-title">
+    <div class="projects-stage">
+      <div class="pin-progress" aria-hidden="true"><span></span></div>
+      <div class="projects-head">
+        <h2 id="projects-title">Side projects.</h2>
+        <p>Built at home, mostly with Codex and Claude Code, and tested on the real hardware.</p>
+      </div>
+      <ul class="track">
+        <li class="project">
+          <img src="/assets/img/proj-treadmill.webp?v=1" width="1100" height="530" alt="A walking pad treadmill with a smartwatch on its belt" loading="lazy">
+          <h3>Daystride</h3>
+          <p>A dashboard for a connected treadmill and an Apple Watch, with workout history and activity analysis.</p>
+          <p class="tech">Cloudflare Workers, D1, Codex</p>
+        </li>
+        <li class="project">
+          <img src="/assets/img/proj-camera.webp?v=1" width="1100" height="921" alt="A rangefinder film camera with a small tortoiseshell butterfly on top" loading="lazy">
+          <h3>Aglais</h3>
+          <p>Studio management for photographers, built by AI agents with set roles, task tracking and reviews.</p>
+          <p class="tech">Next.js, Drizzle, Neon PostgreSQL</p>
+        </li>
+        <li class="project">
+          <img src="/assets/img/proj-keyboard.webp?v=1" width="1100" height="532" alt="A compact mechanical keyboard with one amber key" loading="lazy">
+          <h3>Agent environment</h3>
+          <p>Task-aware terminal titles, an fzf session picker, a local session viewer, and skills and hooks that carry context between sessions.</p>
+          <p class="tech">Claude Code, plugins, hooks</p>
+        </li>
+        <li class="project">
+          <img src="/assets/img/proj-wheel.webp?v=1" width="900" height="1100" alt="A racing wheel with headphones hanging over it" loading="lazy">
+          <h3>Dynamic Music</h3>
+          <p>Remixes music stems live from Forza driving telemetry, with replay for repeatable tuning.</p>
+          <p class="tech">TypeScript, Electron, Web Audio, Python</p>
+        </li>
+        <li class="project">
+          <img src="/assets/img/proj-ledstrip.webp?v=1" width="1100" height="513" alt="A glowing coil of LED strip wired to a small board" loading="lazy">
+          <h3>lydlys</h3>
+          <p>A music festival at home. Lights that react to music, with WLED and controls in the browser.</p>
+          <p class="tech">Go, TypeScript, WLED</p>
+          <a class="more" href="https://github.com/sebafudi/lydlys-controller" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+        </li>
+        <li class="project">
+          <img src="/assets/img/proj-smarthome.webp?v=1" width="916" height="859" alt="A smart bulb, a wireless button and a temperature sensor" loading="lazy">
+          <h3>Smart home</h3>
+          <p>Lighting, climate, security and energy monitoring, all run by Home Assistant.</p>
+          <p class="tech">Home Assistant, Zigbee, ESPHome</p>
+        </li>
+        <li class="project">
+          <img src="/assets/img/cat-box.webp?v=1" width="803" height="1100" alt="The tabby cat sitting in a cardboard box" loading="lazy">
+          <h3>This site</h3>
+          <p>Plain HTML, CSS and TypeScript, built with Vite. Starring the cat from my GitHub avatar.</p>
+          <p class="tech">TypeScript, Vite</p>
+          <a class="more" href="https://github.com/sebafudi/sebafudi.github.io" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="stack" id="stack" data-tone="light" aria-labelledby="stack-title">
+    <h2 id="stack-title">What I work with.</h2>
+    <div class="stack-grid">
+      <div>
+        <h3>Backend</h3>
+        <ul><li>Node.js</li><li>TypeScript</li><li>Fastify</li><li>Express</li><li>PostgreSQL</li><li>Redis</li><li>REST APIs</li></ul>
+      </div>
+      <div>
+        <h3>AI and developer tools</h3>
+        <ul><li>Codex</li><li>Claude Code</li><li>Agent workflows</li><li>Skills, plugins and hooks</li><li>AI-assisted review</li></ul>
+      </div>
+      <div>
+        <h3>Cloud and delivery</h3>
+        <ul><li>AWS Lambda, API Gateway, SQS, SNS, EventBridge</li><li>Docker</li><li>GitHub Actions</li><li>Kubernetes</li><li>Ansible</li><li>GCP</li><li>Jenkins</li></ul>
+      </div>
+      <div>
+        <h3>Infrastructure</h3>
+        <ul><li>Linux</li><li>Proxmox</li><li>WireGuard</li><li>Nginx</li><li>Grafana</li><li>Home Assistant</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="record" data-tone="light" aria-label="Hackathons and education">
+    <div class="record-block">
+      <div class="record-head">
+        <h2>Hackathons</h2>
+        <img class="trophy" data-speed="0.05" src="/assets/img/trophy.webp?v=1" width="769" height="1027" alt="A small silver trophy" loading="lazy">
+      </div>
+      <ul class="rows">
+        <li>
+          <p class="row-when">May 2026</p>
+          <div>
+            <h3>AI research CRM</h3>
+            <p>Second of seven teams, and the Best Design award. Four of us built a contact graph and conference briefings with agentic RAG over ChromaDB through MCP tools, on Claude and the Vercel AI SDK.</p>
+          </div>
+        </li>
+        <li>
+          <p class="row-when">Internal AI hackathon</p>
+          <div>
+            <h3>Group trip assistant</h3>
+            <p>Second place. Three of us built an assistant that follows a group chat and helps plan a shared trip, on Gemini Flash.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="record-block">
+      <div class="record-head">
+        <h2>Education</h2>
+      </div>
+      <ul class="rows">
+        <li>
+          <p class="row-when">2024 to 2026</p>
+          <div>
+            <h3>Master's in Computer Science, Cybersecurity</h3>
+            <p>WSB Merito University in Wrocław. Compared LLMs with static analysis for finding Node.js vulnerabilities, with SecOrchestrator running evaluations on CVEFixes and OWASP Juice Shop.</p>
+          </div>
+        </li>
+        <li>
+          <p class="row-when">2020 to 2024</p>
+          <div>
+            <h3>Engineer's degree in Computer Engineering</h3>
+            <p>Opole University of Technology. Designed a DevOps pipeline on GCP with Terraform, Kubernetes and Docker.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="closing" id="contact" data-tone="dark" aria-labelledby="contact-title">
+    <div class="closing-copy">
+      <h2 id="contact-title">Talk backend, tooling or AI.</h2>
+      <p>LinkedIn is the quickest way to reach me.</p>
+      <a class="button" href="https://www.linkedin.com/in/sebafudi/" target="_blank" rel="noopener noreferrer">Message me on LinkedIn</a>
+    </div>
+    <img class="closing-cat" data-speed="0.06" src="/assets/img/cat-sleep.webp?v=1" width="1100" height="1091" alt="The tabby cat asleep, curled into a ball" loading="lazy">
+  </section>
+
+</main>
+
+<footer class="foot" data-tone="light">
+  <span class="wordmark"><span class="eye" aria-hidden="true"></span>sebastian fudalej</span>
+  <nav aria-label="Elsewhere">
+    <a href="https://github.com/sebafudi" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/sebafudi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </nav>
+</footer>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
 </html>

@@ -1,12 +1,13 @@
 # sebafudi.github.io
 
-My personal website/portfolio
+Personal site, live at [sbfd.me](https://sbfd.me).
 
-# features
+Built with Vite and TypeScript, plain CSS and self-hosted Bricolage Grotesque. Images are transparent WebP cutouts in `public/assets/img`. Design notes live in [DESIGN.md](DESIGN.md).
 
-- pretty (hopefully)
+```sh
+pnpm install
+pnpm dev
+pnpm build
+```
 
-# technologies
-
-- TailwindCSS
-- TypeScript
+Pushing to `master` builds the site and deploys `dist` to the `gh-pages` branch.

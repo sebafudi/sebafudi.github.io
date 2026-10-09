@@ -9,10 +9,6 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
-    "@tailwindcss/vite": "^4.1.18",
-    "postcss": "^8.4.29",
-    "tailwindcss": "^4.1.18",
     "typescript": "^5.0.2",
     "vite": "^7.3.1"
   }
