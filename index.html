@@ -20,8 +20,8 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/bricolage-latin.woff2" crossorigin>
 <link rel="preload" as="image" href="/assets/img/cat.webp?v=1">
-  <script type="module" crossorigin src="/assets/index-B29uphTw.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CxLRPQWO.css">
+  <script type="module" crossorigin src="/assets/index-C5K9gsjO.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-QMVWkg06.css">
 </head>
 <body>
 
@@ -58,41 +58,43 @@
   <section class="work" id="work" data-tone="dark" aria-labelledby="work-title">
     <h2 id="work-title" class="visually-hidden">Experience</h2>
     <div class="work-stage">
-      <div class="pin-progress" aria-hidden="true"><span></span></div>
       <div class="work-art" aria-hidden="true">
-        <img class="work-img" data-job="0" src="/assets/img/job-clock.webp?v=1" width="677" height="1100" alt="">
-        <img class="work-img" data-job="1" src="/assets/img/job-helm.webp?v=1" width="1027" height="1100" alt="">
-        <img class="work-img" data-job="2" src="/assets/img/job-books.webp?v=1" width="1100" height="765" alt="">
-        <img class="work-img" data-job="3" src="/assets/img/job-scanner.webp?v=1" width="780" height="1100" alt="">
-        <img class="work-img" data-job="4" src="/assets/img/job-payments.webp?v=1" width="1034" height="995" alt="">
+        <img class="work-img" src="/assets/img/job-payments.webp?v=1" width="1034" height="995" alt="">
+        <img class="work-img" src="/assets/img/job-scanner.webp?v=1" width="780" height="1100" alt="">
+        <img class="work-img" src="/assets/img/job-books.webp?v=1" width="1100" height="765" alt="">
+        <img class="work-img" src="/assets/img/job-helm.webp?v=1" width="1027" height="1100" alt="">
+        <img class="work-img" src="/assets/img/job-clock.webp?v=1" width="677" height="1100" alt="">
       </div>
-      <ol class="jobs">
-        <li class="job" data-job="0">
-          <p class="job-when">May 2022 to March 2023, part-time</p>
-          <h3>Backend engineer at Clavo</h3>
-          <p>A Slack integration for timesheet changes and who is available, plus features and fixes on Express, Parse Server and MongoDB.</p>
-        </li>
-        <li class="job" data-job="1">
-          <p class="job-when">December 2023 to May 2024</p>
-          <h3>DevOps engineer at SlickCloud</h3>
-          <p>Fixed CI/CD and environment problems across Kubernetes, Jenkins, Docker and Red Hat Enterprise Linux.</p>
-        </li>
-        <li class="job" data-job="2">
-          <p class="job-when">May to November 2024</p>
-          <h3>DevOps intern at Grid Dynamics</h3>
-          <p>A structured DevOps learning path, start to finish.</p>
-        </li>
-        <li class="job" data-job="3">
-          <p class="job-when">September 2024 to July 2025</p>
-          <h3>DevOps and SecOps engineer at Zebra Technologies</h3>
-          <p>CI pipelines for Linux images that run on custom hardware, and the machines that train computer vision models. GitHub Actions, Docker Swarm, GCP, Azure and Ansible.</p>
-        </li>
-        <li class="job" data-job="4">
-          <p class="job-when">July 2025 to now, promoted April 2026</p>
-          <h3>Backend and AI engineer at MasterBorn</h3>
-          <p>I share the payments API of an accounting and tax platform and lead the integration with a new card and ACH provider, working with the vendor directly. Shipped partial payments, legacy service changes and webhook latency diagnostics.</p>
-        </li>
-      </ol>
+      <div class="jobs-window">
+        <ol class="jobs">
+          <li class="job">
+            <p class="job-when">July 2025 to now, promoted April 2026</p>
+            <h3>Backend and AI engineer at MasterBorn</h3>
+            <p class="job-what">I share the payments API of an accounting and tax platform and lead the integration with a new card and ACH provider, working with the vendor directly. Shipped partial payments, legacy service changes and webhook latency diagnostics.</p>
+          </li>
+          <li class="job">
+            <p class="job-when">September 2024 to July 2025</p>
+            <h3>DevOps and SecOps engineer at Zebra Technologies</h3>
+            <p class="job-what">CI pipelines for Linux images that run on custom hardware, and the machines that train computer vision models. GitHub Actions, Docker Swarm, GCP, Azure and Ansible.</p>
+          </li>
+          <li class="job">
+            <p class="job-when">May to November 2024</p>
+            <h3>DevOps intern at Grid Dynamics</h3>
+            <p class="job-what">A structured DevOps learning path, start to finish.</p>
+          </li>
+          <li class="job">
+            <p class="job-when">December 2023 to May 2024</p>
+            <h3>DevOps engineer at SlickCloud</h3>
+            <p class="job-what">Fixed CI/CD and environment problems across Kubernetes, Jenkins, Docker and Red Hat Enterprise Linux.</p>
+          </li>
+          <li class="job">
+            <p class="job-when">May 2022 to March 2023, part-time</p>
+            <h3>Backend engineer at Clavo</h3>
+            <p class="job-what">A Slack integration for timesheet changes and who is available, plus features and fixes on Express, Parse Server and MongoDB.</p>
+          </li>
+        </ol>
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><span></span></div>
     </div>
   </section>
 
@@ -130,11 +132,19 @@
   <section class="projects" id="projects" data-tone="light" aria-labelledby="projects-title">
     <div class="projects-stage">
       <div class="pin-progress" aria-hidden="true"><span></span></div>
+      <div class="scroll-cue" aria-hidden="true"><span></span></div>
       <div class="projects-head">
         <h2 id="projects-title">Side projects.</h2>
         <p>Built at home, mostly with Codex and Claude Code, and tested on the real hardware.</p>
       </div>
       <ul class="track">
+        <li class="project">
+          <img src="/assets/img/proj-voicestick.webp?v=1" width="1100" height="784" alt="A small pocket device with an amber button and a screen showing a sound wave" loading="lazy">
+          <h3>Voicestick</h3>
+          <p>Hold a button, speak, let go. The note becomes a calendar event, a task for an agent or, when nothing fits, a plain note.</p>
+          <p class="tech">ESP32, Cloudflare Workers, TypeSafe Jev</p>
+          <a class="more" href="https://voicestick.sbfd.me" target="_blank" rel="noopener noreferrer">voicestick.sbfd.me</a>
+        </li>
         <li class="project">
           <img src="/assets/img/proj-treadmill.webp?v=1" width="1100" height="530" alt="A walking pad treadmill with a smartwatch on its belt" loading="lazy">
           <h3>Daystride</h3>
@@ -154,7 +164,7 @@
           <p class="tech">Claude Code, plugins, hooks</p>
         </li>
         <li class="project">
-          <img src="/assets/img/proj-wheel.webp?v=1" width="900" height="1100" alt="A racing wheel with headphones hanging over it" loading="lazy">
+          <img src="/assets/img/proj-music.webp?v=1" width="1100" height="790" alt="A model race car parked on a vinyl record" loading="lazy">
           <h3>Dynamic Music</h3>
           <p>Remixes music stems live from Forza driving telemetry, with replay for repeatable tuning.</p>
           <p class="tech">TypeScript, Electron, Web Audio, Python</p>
@@ -175,7 +185,7 @@
         <li class="project">
           <img src="/assets/img/cat-box.webp?v=1" width="803" height="1100" alt="The tabby cat sitting in a cardboard box" loading="lazy">
           <h3>This site</h3>
-          <p>Plain HTML, CSS and TypeScript, built with Vite. Starring the cat from my GitHub avatar.</p>
+          <p>Plain HTML, CSS and TypeScript, built with Vite. Starring my cat.</p>
           <p class="tech">TypeScript, Vite</p>
           <a class="more" href="https://github.com/sebafudi/sebafudi.github.io" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
         </li>
@@ -205,10 +215,10 @@
     </div>
   </section>
 
-  <section class="record" data-tone="light" aria-label="Hackathons and education">
+  <section class="record record-hack" data-tone="light" aria-labelledby="hack-title">
     <div class="record-block">
       <div class="record-head">
-        <h2>Hackathons</h2>
+        <h2 id="hack-title">Hackathons</h2>
         <img class="trophy" data-speed="0.05" src="/assets/img/trophy.webp?v=1" width="769" height="1027" alt="A small silver trophy" loading="lazy">
       </div>
       <ul class="rows">
@@ -228,9 +238,13 @@
         </li>
       </ul>
     </div>
+  </section>
+
+  <section class="record record-edu" data-tone="light" aria-labelledby="edu-title">
     <div class="record-block">
       <div class="record-head">
-        <h2>Education</h2>
+        <h2 id="edu-title">Education</h2>
+        <img class="cap" data-speed="0.05" src="/assets/img/edu-cap.webp?v=1" width="1100" height="713" alt="A graduation cap resting on two closed books" loading="lazy">
       </div>
       <ul class="rows">
         <li>
