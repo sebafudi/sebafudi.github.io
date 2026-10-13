@@ -34,7 +34,13 @@ function showPinProgress(section: HTMLElement, progress: number) {
   const rect = section.getBoundingClientRect();
   section.classList.toggle('is-pinned-now', rect.top <= 1 && rect.bottom >= viewHeight - 1);
   section.classList.toggle('has-more', progress < 0.97);
-  section.style.setProperty('--progress', progress.toFixed(3));
+}
+
+// One dot per stop in the scroll cue; the current one stretches.
+function showCueSteps(section: HTMLElement, count: number, current: number) {
+  const steps = section.querySelector<HTMLElement>('.cue-steps')!;
+  if (steps.childElementCount !== count) steps.replaceChildren(...Array.from({ length: count }, () => document.createElement('i')));
+  [...steps.children].forEach((step, index) => step.classList.toggle('is-current', index === current));
 }
 
 function updateBar() {
@@ -87,8 +93,8 @@ function updateLines() {
 }
 
 // Work: every job stays in the list; the one nearest the middle opens up.
-// Focus is a continuous index that eases toward the scroll position, so rows
-// grow, shrink and slide together instead of switching.
+// Focus snaps to a job per stretch of scroll, and a continuous index eases
+// toward it, so rows grow, shrink and slide together instead of switching.
 
 type JobSize = { titleTop: number; title: number; rest: number };
 let jobSizes: JobSize[] = [];
@@ -98,7 +104,11 @@ let jobsMoving = false;
 let jobsLastFrame = 0;
 const smoothstep = (t: number) => t * t * (3 - 2 * t);
 
-work.style.setProperty('--jobs', String(jobs.length - 1));
+// Each job owns a stretch of scroll. The first and last own longer ones, so a
+// fast scroll settles on them before the page moves on to the next section.
+const jobSpans = jobs.map((_, index) => (index === 0 || index === jobs.length - 1 ? 1.7 : 1));
+const jobSpanTotal = jobSpans.reduce((sum, span) => sum + span, 0);
+work.style.setProperty('--span', String(jobSpanTotal - 1));
 
 function measureJobs() {
   jobSizes = jobs.map((job) => {
@@ -107,11 +117,14 @@ function measureJobs() {
   });
 }
 
-// Each job holds the focus for a stretch of scroll, then hands over to the next.
+// Focus only ever rests on a whole job; the eased chase animates the handover.
 function focusFromProgress(progress: number) {
-  const span = progress * (jobs.length - 1);
-  const index = Math.min(jobs.length - 2, Math.floor(span));
-  return index + smoothstep(clamp((span - index - 0.22) / 0.56, 0, 1));
+  let reach = progress * jobSpanTotal;
+  for (let index = 0; index < jobs.length; index += 1) {
+    reach -= jobSpans[index];
+    if (reach < 0) return index;
+  }
+  return jobs.length - 1;
 }
 
 function layoutJobs(focus: number) {
@@ -147,7 +160,7 @@ function stepJobs(now: number) {
   const elapsed = jobsLastFrame ? Math.min(64, now - jobsLastFrame) : 16.7;
   jobsLastFrame = now;
   const gap = jobFocusTarget - jobFocus;
-  jobFocus = Math.abs(gap) < 0.0004 ? jobFocusTarget : jobFocus + gap * (1 - Math.pow(1 - 0.13, elapsed / 16.7));
+  jobFocus = Math.abs(gap) < 0.0004 ? jobFocusTarget : jobFocus + gap * (1 - Math.pow(1 - 0.11, elapsed / 16.7));
   layoutJobs(jobFocus);
   if (jobFocus !== jobFocusTarget) {
     requestAnimationFrame(stepJobs);
@@ -161,6 +174,7 @@ function updateWork() {
   const progress = pinnedProgress(work);
   showPinProgress(work, progress);
   jobFocusTarget = focusFromProgress(progress);
+  showCueSteps(work, jobs.length, jobFocusTarget);
   if (jobsMoving) return;
   jobsMoving = true;
   requestAnimationFrame(stepJobs);
@@ -190,6 +204,7 @@ function updateProjects() {
   const step = first.offsetWidth + parseFloat(getComputedStyle(track).columnGap || '0');
   const stops = Math.max(1, Math.ceil(overflow / step));
   const stop = Math.round(progress * stops);
+  showCueSteps(projects, stops + 1, stop);
   projects.style.setProperty('--x', `${-Math.min(overflow, stop * step)}px`);
 }
 

@@ -35,9 +35,9 @@ Transparent cutouts on flat color carry the page. The recurring character is my 
 ## Motion
 
 - Intro: waits for the font and the decoded hero cat (at most 1.2 s), then fades in the bar, the headline and the cat together.
-- Work: every job stays on screen. A continuous focus index eases toward `pinnedProgress()`, holds on each job for a stretch, and drives each row's title scale, description reveal and clip; the list slides so the focus sits mid-screen and the objects crossfade with it.
+- Work: every job stays on screen. Scroll picks one job per stretch (the first and last get longer stretches as headroom), and a continuous focus index eases toward it, driving each row's title scale, description reveal and clip; the list slides so the focus sits mid-screen and the objects crossfade with it.
 - Projects: the strip snaps one object per step on wide screens, and a sideways wheel or trackpad swipe moves the page by the matching amount; on narrow screens it is a native scroll-snap row. A faded right edge shows there is more.
-- Scroll cue: a small capsule with a drifting dot while a pinned section has more to show.
+- Scroll cue: while a pinned section holds the screen, a large pill shows an outlined mouse with a drifting dot, the word Scroll and one dot per stop, the current one stretched. On the work section it sits under the object column.
 - Hero and parallax values follow scroll through an eased chase.
 - Reduced motion: every section renders in its finished state and nothing pins.
 
