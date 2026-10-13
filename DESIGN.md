@@ -17,25 +17,27 @@ Type: Bricolage Grotesque (self-hosted variable, latin and latin-ext) for everyt
 
 ## Layout
 
-Transparent cutouts on flat color carry the page. The recurring character is a brown tabby Maine Coon rendered from the GitHub avatar; every project and job gets one object.
+Transparent cutouts on flat color carry the page. The recurring character is my cat, a brown tabby Maine Coon; every project and job gets one object.
 
 ```
 [ hero (ink): name, one line, the cat rises from below    ]
 [ intro (fog): four lines light up one at a time            ]
-[ work (ink): pinned, five jobs crossfade with their object ]  the one bold moment
+[ work (ink): pinned list, newest first, focused job opens   ]  the one bold moment
 [ ai (fog): Autodev as a real sequence with approval gates  ]
 [ yggdrasil (ink): the cable tree with parallax             ]
 [ projects (fog): pinned strip, one object per project      ]
 [ stack (fog): four plain lists                             ]
-[ hackathons and education (paper): dated rows              ]
+[ hackathons (paper): dated rows, trophy                     ]
+[ education (fog): dated rows, cap on books                  ]
 [ closing (ink): sleeping cat, LinkedIn button              ]
 ```
 
 ## Motion
 
 - Intro: waits for the font and the decoded hero cat (at most 1.2 s), then fades in the bar, the headline and the cat together.
-- Work: discrete beats from `pinnedProgress()`, one per job, with a faint progress bar while pinned.
-- Projects: the strip snaps one object per step on wide screens; on narrow screens it is a native scroll-snap row.
+- Work: every job stays on screen. A continuous focus index eases toward `pinnedProgress()`, holds on each job for a stretch, and drives each row's title scale, description reveal and clip; the list slides so the focus sits mid-screen and the objects crossfade with it.
+- Projects: the strip snaps one object per step on wide screens, and a sideways wheel or trackpad swipe moves the page by the matching amount; on narrow screens it is a native scroll-snap row. A faded right edge shows there is more.
+- Scroll cue: a small capsule with a drifting dot while a pinned section has more to show.
 - Hero and parallax values follow scroll through an eased chase.
 - Reduced motion: every section renders in its finished state and nothing pins.
 

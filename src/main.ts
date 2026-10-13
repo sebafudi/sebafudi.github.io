@@ -11,6 +11,7 @@ const hero = document.querySelector<HTMLElement>('.hero')!;
 const heroCat = hero.querySelector<HTMLElement>('.hero-cat')!;
 const lines = [...document.querySelectorAll<HTMLElement>('.intro .line')];
 const work = document.querySelector<HTMLElement>('.work')!;
+const jobsWindow = work.querySelector<HTMLElement>('.jobs-window')!;
 const jobs = [...work.querySelectorAll<HTMLElement>('.job')];
 const jobImages = [...work.querySelectorAll<HTMLElement>('.work-img')];
 const projects = document.querySelector<HTMLElement>('.projects')!;
@@ -32,6 +33,7 @@ function pinnedProgress(section: HTMLElement) {
 function showPinProgress(section: HTMLElement, progress: number) {
   const rect = section.getBoundingClientRect();
   section.classList.toggle('is-pinned-now', rect.top <= 1 && rect.bottom >= viewHeight - 1);
+  section.classList.toggle('has-more', progress < 0.97);
   section.style.setProperty('--progress', progress.toFixed(3));
 }
 
@@ -84,15 +86,84 @@ function updateLines() {
   }
 }
 
-function showJob(index: number) {
-  jobs.forEach((job, jobIndex) => job.classList.toggle('is-active', jobIndex === index));
-  jobImages.forEach((image) => image.classList.toggle('is-shown', Number(image.dataset.job) === index));
+// Work: every job stays in the list; the one nearest the middle opens up.
+// Focus is a continuous index that eases toward the scroll position, so rows
+// grow, shrink and slide together instead of switching.
+
+type JobSize = { titleTop: number; title: number; rest: number };
+let jobSizes: JobSize[] = [];
+let jobFocus = 0;
+let jobFocusTarget = 0;
+let jobsMoving = false;
+let jobsLastFrame = 0;
+const smoothstep = (t: number) => t * t * (3 - 2 * t);
+
+work.style.setProperty('--jobs', String(jobs.length - 1));
+
+function measureJobs() {
+  jobSizes = jobs.map((job) => {
+    const title = job.querySelector<HTMLElement>('h3')!;
+    return { titleTop: title.offsetTop, title: title.offsetHeight, rest: job.offsetHeight - title.offsetTop - title.offsetHeight };
+  });
+}
+
+// Each job holds the focus for a stretch of scroll, then hands over to the next.
+function focusFromProgress(progress: number) {
+  const span = progress * (jobs.length - 1);
+  const index = Math.min(jobs.length - 2, Math.floor(span));
+  return index + smoothstep(clamp((span - index - 0.22) / 0.56, 0, 1));
+}
+
+function layoutJobs(focus: number) {
+  const wide = wideScreen.matches;
+  const smallest = wide ? 0.52 : 0.64;
+  const gap = wide ? 34 : 20;
+  const tops: number[] = [];
+  const heights: number[] = [];
+  let y = 0;
+  jobs.forEach((job, index) => {
+    const size = jobSizes[index];
+    const open = smoothstep(clamp(1 - Math.abs(index - focus), 0, 1));
+    const scale = smallest + (1 - smallest) * open;
+    const height = size.titleTop + size.title * scale + size.rest * open;
+    tops.push(y);
+    heights.push(height);
+    y += height + gap;
+    job.style.setProperty('--f', open.toFixed(4));
+    job.style.setProperty('--s', scale.toFixed(4));
+    job.style.setProperty('--lift', `${(-size.title * (1 - scale) + (1 - open) * 14).toFixed(2)}px`);
+    job.style.setProperty('--clip', `${height.toFixed(2)}px`);
+    jobImages[index]?.style.setProperty('--f', open.toFixed(4));
+  });
+  const from = Math.floor(focus);
+  const to = Math.min(jobs.length - 1, from + 1);
+  const middle = (index: number) => tops[index] + heights[index] / 2;
+  const anchor = middle(from) + (middle(to) - middle(from)) * (focus - from);
+  const shift = jobsWindow.clientHeight * (wide ? 0.5 : 0.46) - anchor;
+  jobs.forEach((job, index) => job.style.setProperty('--y', `${(tops[index] + shift).toFixed(2)}px`));
+}
+
+function stepJobs(now: number) {
+  const elapsed = jobsLastFrame ? Math.min(64, now - jobsLastFrame) : 16.7;
+  jobsLastFrame = now;
+  const gap = jobFocusTarget - jobFocus;
+  jobFocus = Math.abs(gap) < 0.0004 ? jobFocusTarget : jobFocus + gap * (1 - Math.pow(1 - 0.13, elapsed / 16.7));
+  layoutJobs(jobFocus);
+  if (jobFocus !== jobFocusTarget) {
+    requestAnimationFrame(stepJobs);
+  } else {
+    jobsMoving = false;
+    jobsLastFrame = 0;
+  }
 }
 
 function updateWork() {
   const progress = pinnedProgress(work);
   showPinProgress(work, progress);
-  showJob(Math.min(jobs.length - 1, Math.floor(progress * jobs.length)));
+  jobFocusTarget = focusFromProgress(progress);
+  if (jobsMoving) return;
+  jobsMoving = true;
+  requestAnimationFrame(stepJobs);
 }
 
 function sizeProjects() {
@@ -122,6 +193,30 @@ function updateProjects() {
   projects.style.setProperty('--x', `${-Math.min(overflow, stop * step)}px`);
 }
 
+// Narrow screens scroll the strip natively; fade its right edge while more remains.
+function updateTrackEdge() {
+  if (projects.classList.contains('is-pinned')) return;
+  projects.classList.toggle('has-more', track.scrollLeft < track.scrollWidth - track.clientWidth - 4);
+}
+
+// A sideways wheel or trackpad swipe over the pinned strip moves the page by the
+// matching amount, so the strip follows the same path as vertical scrolling.
+function scrollProjectsSideways(event: WheelEvent) {
+  if (!projects.classList.contains('is-pinned')) return;
+  const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewHeight : 1;
+  const deltaX = event.deltaX * unit;
+  if (Math.abs(deltaX) <= Math.abs(event.deltaY * unit)) return;
+  const rect = projects.getBoundingClientRect();
+  if (rect.top > 1 || rect.bottom < viewHeight - 1) return;
+  const travel = projects.offsetHeight - viewHeight;
+  const overflow = Math.max(1, Number(projects.dataset.overflow || 0));
+  const start = scrollY + rect.top;
+  const next = clamp(scrollY + deltaX * (travel / overflow), start, start + travel);
+  if (Math.abs(next - scrollY) < 0.5) return;
+  event.preventDefault();
+  scrollTo({ top: next, behavior: 'instant' });
+}
+
 function updateParallax() {
   for (const item of parallaxItems) {
     const rect = item.getBoundingClientRect();
@@ -136,11 +231,7 @@ let frameRequested = false;
 function render() {
   frameRequested = false;
   updateBar();
-  if (reduceMotion.matches) {
-    jobs.forEach((job) => job.classList.add('is-active'));
-    jobImages.forEach((image, index) => image.classList.toggle('is-shown', index === jobImages.length - 1));
-    return;
-  }
+  if (reduceMotion.matches) return;
   updateHero();
   updateLines();
   updateWork();
@@ -163,7 +254,10 @@ flowObserver.observe(flow);
 
 const relayout = () => {
   viewHeight = viewportProbe.offsetHeight || innerHeight;
+  measureJobs();
+  layoutJobs(jobFocus);
   sizeProjects();
+  updateTrackEdge();
   requestRender();
 };
 let layoutWidth = innerWidth;
@@ -173,6 +267,9 @@ const relayoutOnWidthChange = () => {
   relayout();
 };
 addEventListener('scroll', requestRender, { passive: true });
+track.addEventListener('scroll', updateTrackEdge, { passive: true });
+projects.addEventListener('wheel', scrollProjectsSideways, { passive: false });
+document.fonts?.ready.then(relayout);
 addEventListener('resize', relayoutOnWidthChange);
 addEventListener('load', relayout);
 reduceMotion.addEventListener('change', relayout);
